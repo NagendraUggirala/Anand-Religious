@@ -8,7 +8,9 @@ const Footer = () => {
   const quickLinks = [
     { path: "/", label: "Home" },
     { path: "/about", label: "About" },
-    { path: "/services", label: "Services" },
+    { path: "/services", label: "Our Rituals" },
+    { path: "/industries", label: "Services" },
+    { path: "/blog", label: "Blog" },
     { path: "/contact", label: "Contact" }
   ];
 
@@ -60,25 +62,23 @@ const Footer = () => {
             <h4 class="text-lg font-semibold text-blue-800 mb-2">Information We Collect</h4>
             <ul class="list-disc list-inside space-y-1 text-gray-600">
               <li>Personal identification information (Name, email address, phone number)</li>
-              <li>Business information and trade requirements</li>
-              <li>Communication history and inquiries</li>
+              <li>Birth details for Janam Kundali analysis</li>
+              <li>Communication history and ritual inquiries</li>
               <li>Site usage data and analytics</li>
             </ul>
           </div>
-
           <div>
             <h4 class="text-lg font-semibold text-blue-800 mb-2">How We Use Your Information</h4>
             <ul class="list-disc list-inside space-y-1 text-gray-600">
-              <li>Provide personalized trading solutions and recommendations</li>
-              <li>Process your inquiries and service requests</li>
-              <li>Send relevant market updates and trade insights</li>
-              <li>Improve our services and customer experience</li>
+              <li>Provide personalized Vedic consultations and ritual recommendations</li>
+              <li>Process your ritual booking requests</li>
+              <li>Send relevant spiritual guidance and Vedic knowledge</li>
+              <li>Improve our services and spiritual support</li>
             </ul>
           </div>
-
           <div>
             <h4 class="text-lg font-semibold text-blue-800 mb-2">Data Protection</h4>
-            <p class="text-gray-600">We implement security measures to protect your personal information and maintain confidentiality in all trade transactions.</p>
+            <p class="text-gray-600">We implement security measures to protect your personal information and maintain complete confidentiality in all spiritual consultations and ritual bookings.</p>
           </div>
         </div>
       `
@@ -90,27 +90,25 @@ const Footer = () => {
           <p class="text-gray-700"><strong>Effective Date:</strong> ${currentYear}</p>
           
           <div>
-            <h4 class="text-lg font-semibold text-blue-800 mb-2">Product Information</h4>
+            <h4 class="text-lg font-semibold text-blue-800 mb-2">Service Information</h4>
             <ul class="list-disc list-inside space-y-1 text-gray-600">
-              <li>All product details, prices, and specifications are subject to change without prior notice</li>
-              <li>Images and descriptions are for representation purposes only</li>
-              <li>Actual products may vary from displayed information</li>
+              <li>All ritual details, timings, and requirements are subject to Vedic calendar and priest availability</li>
+              <li>Ritual descriptions are based on authentic Vedic scriptures</li>
+              <li>Actual ritual performance follows traditional Vedic principles</li>
             </ul>
           </div>
-
           <div>
-            <h4 class="text-lg font-semibold text-blue-800 mb-2">Orders & Transactions</h4>
+            <h4 class="text-lg font-semibold text-blue-800 mb-2">Booking & Rituals</h4>
             <ul class="list-disc list-inside space-y-1 text-gray-600">
-              <li>Orders are subject to product availability and supplier confirmation</li>
-              <li>All transactions must comply with international trade regulations</li>
-              <li>Payment terms are subject to company approval and credit verification</li>
-              <li>Shipping and delivery timelines are estimates and may vary</li>
+              <li>Ritual bookings are subject to priest availability and auspicious timing (Muhurta)</li>
+              <li>All rituals are performed according to authentic Vedic scriptures</li>
+              <li>Ritual timings are based on Vedic calendar and planetary positions</li>
+              <li>Live participation links are provided for remote devotees</li>
             </ul>
           </div>
-
           <div>
-            <h4 class="text-lg font-semibold text-blue-800 mb-2">Legal Compliance</h4>
-            <p class="text-gray-600">All trade transactions are governed by applicable international trade laws and customs regulations. Clients are advised to verify all documentation before proceeding.</p>
+            <h4 class="text-lg font-semibold text-blue-800 mb-2">Spiritual Service</h4>
+            <p class="text-gray-600">All rituals and consultations are provided as spiritual services based on Vedic traditions. Individual experiences may vary, and results are based on spiritual merit and divine grace.</p>
           </div>
         </div>
       `
@@ -121,20 +119,18 @@ const Footer = () => {
         <div class="space-y-4">
           <div>
             <h4 class="text-lg font-semibold text-blue-800 mb-2">Information Accuracy</h4>
-            <p class="text-gray-600">While we strive to provide accurate and up-to-date information about products and trading services, we cannot guarantee the completeness or accuracy of all content. Clients should:</p>
+            <p class="text-gray-600">While we strive to provide accurate information about Vedic rituals and spiritual services, we cannot guarantee specific outcomes. Devotees should:</p>
             <ul class="list-disc list-inside space-y-1 text-gray-600 mt-2">
-              <li>Verify all product details and specifications</li>
-              <li>Check original documentation and certifications</li>
-              <li>Consult trade advisors before transactions</li>
-              <li>Review samples when available</li>
+              <li>Understand that rituals are spiritual practices, not medical treatments</li>
+              <li>Follow post-ritual guidance provided by our priests</li>
+              <li>Maintain faith and positive intentions</li>
+              <li>Consult with our Vedic experts for personalized guidance</li>
             </ul>
           </div>
-
           <div>
-            <h4 class="text-lg font-semibold text-blue-800 mb-2">Trade Risks</h4>
-            <p class="text-gray-600">International trade involves various risks including currency fluctuations, regulatory changes, and market volatility. Clients should make independent decisions based on their risk assessment.</p>
+            <h4 class="text-lg font-semibold text-blue-800 mb-2">Spiritual Practices</h4>
+            <p class="text-gray-600">Vedic rituals are spiritual practices based on ancient wisdom. Individual experiences and results may vary based on karmic patterns, faith, and divine grace. These services are not substitutes for medical treatment.</p>
           </div>
-
           <div>
             <h4 class="text-lg font-semibold text-blue-800 mb-2">Third-Party Links</h4>
             <p class="text-gray-600">Our website may contain links to third-party sites. We are not responsible for the content or privacy practices of these external sites.</p>
@@ -151,13 +147,13 @@ const Footer = () => {
           
           {/* Main Footer Content */}
           <div className="py-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6 mb-6">
               
               {/* Company Info */}
-              <div className="text-left">
-                <div className="flex items-start space-x-4 mb-4">
+              <div className="text-left md:col-span-4">
+                <div className="flex items-center space-x-3 mb-4">
                   {/* Founder Image and Logo */}
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2 flex-shrink-0">
                     <div className="w-16 h-16 rounded-full border-2 border-orange-200 overflow-hidden shadow-lg">
                       <img
                         src="/images/image.png"
@@ -168,31 +164,78 @@ const Footer = () => {
                     <div className="w-14 h-14">
                       <img
                         src="/images/Anandhlogo.png"
-                        alt="Anand Imports & Exports"
+                        alt="Anand Religious Trust"
                         className="w-full h-full object-contain"
                       />
                     </div>
                   </div>
-                  <div className="text-left">
-                    <h2 className="text-2xl font-bold">
+                  {/* Text immediately to the side */}
+                  <div className="flex flex-col">
+                    <h2 className="text-xl md:text-2xl font-bold">
                       <span className="text-orange-400">ANAND</span> 
-                      <span className="text-white"> IMPORTS & EXPORTS</span>
+                      <span className="text-white"> RELIGIOUS TRUST</span>
                     </h2>
-                    <p className="text-orange-200 text-sm italic">"Connecting Markets. Delivering Excellence."</p>
+                    <p className="text-orange-200 text-xs md:text-sm italic">"धर्मो रक्षति रक्षितः"</p>
                   </div>
                 </div>
 
                 <div className="text-left">
                   <p className="text-gray-300 mb-3 text-sm leading-relaxed">
-                    A dynamic global trading enterprise dedicated to bridging national and international markets.
+                    A sacred initiative dedicated to preserving the timeless wisdom of Sanatan Dharma and serving humanity through authentic Vedic practices.
                   </p>
                   <p className="text-gray-300 mb-3 text-sm leading-relaxed">
-                    We specialize in the smooth movement of quality goods across borders, ensuring reliability, transparency, and value in every transaction.
+                    We specialize in performing authentic Vedic rituals based on Janam Kundali, ensuring purity, authenticity, and maximum spiritual benefit for devotees worldwide.
                   </p>
                 </div>
+              </div>
 
-                {/* Social Media with SVG Icons */}
-                <div className="flex space-x-3">
+              {/* Quick Links */}
+              <div className="text-left md:col-span-2 md:pl-6">
+                <h3 className="text-lg font-semibold mb-3 text-orange-400">Quick Links</h3>
+                <div className="space-y-2">
+                  {quickLinks.map((link, index) => (
+                    <Link
+                      key={index}
+                      to={link.path}
+                      className="block text-gray-300 py-1 text-sm hover:text-orange-400 transition-all duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Contact Info */}
+              <div className="text-left md:col-span-3 md:pl-4">
+                <h3 className="text-lg font-semibold mb-3 text-orange-400">Contact</h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex flex-col items-start space-y-2">
+                    <div className="flex items-start space-x-2">
+                      <i className="fas fa-map-marker-alt text-orange-400 mt-1 text-sm" />
+                      <span className="text-gray-300 text-left">
+                        Hiko, 131/A, 2nd Floor<br />
+                        Banjara Hills, Hyderabad<br />
+                        Telangana - 500034
+                      </span>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <i className="fas fa-phone text-orange-400 text-sm" />
+                      <span className="text-gray-300">+91 1800 123 4857</span>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <i className="fas fa-envelope text-orange-400 text-sm" />
+                      <span className="text-gray-300">info@anandreligioustrust.com</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Follow Us Section */}
+              <div className="text-left md:col-span-3 md:pl-4">
+                <h3 className="text-lg font-semibold mb-3 text-orange-400">Follow Us</h3>
+                <div className="flex flex-wrap gap-3">
                   {[
                     { name: "facebook", url: "#", color: "hover:bg-blue-600" },
                     { name: "twitter", url: "#", color: "hover:bg-blue-400" },
@@ -213,49 +256,6 @@ const Footer = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Quick Links */}
-              <div className="text-left">
-                <h3 className="text-lg font-semibold mb-3 text-orange-400">Quick Links</h3>
-                <div className="space-y-2">
-                  {quickLinks.map((link, index) => (
-                    <Link
-                      key={index}
-                      to={link.path}
-                      className="block text-gray-300 py-1 text-sm hover:text-orange-400 transition-all duration-200"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Contact Info */}
-              <div className="text-left">
-                <h3 className="text-lg font-semibold mb-3 text-orange-400">Contact</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex flex-col items-start space-y-2">
-                    <div className="flex items-start space-x-2">
-                      <i className="fas fa-map-marker-alt text-orange-400 mt-1 text-sm" />
-                      <span className="text-gray-300 text-left">
-                        Hiko, 131/A, 2nd Floor<br />
-                        Banjara Hills, Hyderabad<br />
-                        Telangana - 500034
-                      </span>
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                      <i className="fas fa-phone text-orange-400 text-sm" />
-                      <span className="text-gray-300">+91 1800 123 4857</span>
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                      <i className="fas fa-envelope text-orange-400 text-sm" />
-                      <span className="text-gray-300">info@anandimportsexports.com</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -266,7 +266,7 @@ const Footer = () => {
               {/* Copyright */}
               <div className="text-center md:text-left">
                 <p className="text-gray-400 text-sm">
-                  © {currentYear} <span className="text-orange-400 font-semibold">Anand Imports & Exports</span>. All rights reserved.
+                  © {currentYear} <span className="text-orange-400 font-semibold">Anand Religious Trust</span>. All rights reserved.
                 </p>
               </div>
 

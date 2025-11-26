@@ -6,9 +6,16 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-import ProjectsPage from './pages/ProjectsPage';
+import ServicesPage from './pages/ServicesPage';
+import IndustriesPage from './pages/IndustriesPage';
+import BlogPage from './pages/BlogPage';
+import BookingPage from './pages/BookingPage';
+import HowItWorksPage from './pages/HowItWorksPage';
+import VedicKnowledgePage from './pages/VedicKnowledgePage';
+import TestimonialsPage from './pages/TestimonialsPage';
+import DonatePage from './pages/DonatePage';
 import ContactPage from './pages/ContactPage';
-import Landinformation from './pages/Landinformation';
+import FAQPage from './pages/FAQPage';
 import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component
 
 function App() {
@@ -22,9 +29,16 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/industries" element={<IndustriesPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/booking" element={<BookingPage />} />
+              <Route path="/how-it-works" element={<HowItWorksPage />} />
+              <Route path="/vedic-knowledge" element={<VedicKnowledgePage />} />
+              <Route path="/testimonials" element={<TestimonialsPage />} />
+              <Route path="/donate" element={<DonatePage />} />
               <Route path="/contact" element={<ContactPage />} />
-              <Route path="/Landinfo" element={<Landinformation />} />
+              <Route path="/faq" element={<FAQPage />} />
             </Routes>
           </main>
           <Footer />

@@ -14,8 +14,10 @@ const Header = () => {
 
   const navItems = [
     { path: "/", label: "Home" },
-    { path: "/services", label: "Services" },
     { path: "/about", label: "About" },
+    { path: "/services", label: "Our Rituals" },
+    { path: "/industries", label: "Services" },
+    { path: "/blog", label: "Blog" },
     { path: "/contact", label: "Contact" },
   ];
 
@@ -30,8 +32,35 @@ const Header = () => {
       <div className="container mx-auto px-4">
         {/* Row */}
         <div className="flex justify-between items-center py-3 md:py-4">
-          {/* Desktop Navigation - Left Side */}
-          <nav className="hidden lg:flex items-center space-x-3 order-1">
+          {/* Logo - Left Side */}
+          <Link to="/" className="flex items-center space-x-2 md:space-x-3 group order-1">
+            {/* Images First */}
+            <div className="flex items-center space-x-2">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-orange-200 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300">
+                <img
+                  src="./images/image.png"
+                  alt="Founder"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <img
+                src="./images/Anandhlogo.png"
+                alt="Anand Logo"
+                className="w-8 h-10 md:w-10 md:h-12 object-contain"
+              />
+            </div>
+
+            {/* Text After Images */}
+            <div className="flex flex-col items-start">
+              <h1 className="text-lg md:text-xl font-bold text-blue-800">
+                <span className="text-orange-500">ANAND </span>RELIGIOUS TRUST
+              </h1>
+              <p className="text-xs text-gray-600 italic mt-1">धर्मो रक्षति रक्षितः</p>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation - Right Side */}
+          <nav className="hidden lg:flex items-center space-x-3 order-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -45,12 +74,22 @@ const Header = () => {
                 {item.label}
               </Link>
             ))}
+            <Link
+              to="/booking"
+              className={`px-4 py-2.5 rounded-lg text-base font-semibold transition-all duration-200 ${
+                isActiveLink("/booking")
+                  ? "text-white bg-orange-600 border border-orange-700"
+                  : "bg-orange-600 text-white hover:bg-orange-700 shadow-md hover:shadow-lg"
+              }`}
+            >
+              Booking
+            </Link>
           </nav>
 
-          {/* Mobile menu button - Left Side */}
+          {/* Mobile menu button - Right Side */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 md:p-3 text-blue-800 hover:bg-blue-50 rounded-lg transition-all duration-200 order-1"
+            className="lg:hidden p-2 md:p-3 text-blue-800 hover:bg-blue-50 rounded-lg transition-all duration-200 order-2"
           >
             {isMenuOpen ? (
               <svg
@@ -82,35 +121,6 @@ const Header = () => {
               </svg>
             )}
           </button>
-
-          {/* Logo - Right Side */}
-          <Link to="/" className="flex items-center space-x-2 md:space-x-3 group order-2">
-            {/* Text First */}
-            <div className="flex flex-col items-start">
-              <h1 className="text-lg md:text-xl font-bold text-blue-800">
-                <span className="text-orange-500">ANAND </span>IMPORTS & EXPORTS
-              </h1>
-              <p className="text-xs text-gray-600 italic mt-1">
-                Connecting Markets. Delivering Excellence.
-              </p>
-            </div>
-
-            {/* Images After Text */}
-            <div className="flex items-center space-x-2">
-              <img
-                src="./images/Anandhlogo.png"
-                alt="Anand Logo"
-                className="w-8 h-10 md:w-10 md:h-12 object-contain"
-              />
-              <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-orange-200 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300">
-                <img
-                  src="./images/image.png"
-                  alt="Founder"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-            </div>
-          </Link>
         </div>
 
         {/* Mobile Menu - Improved Alignment */}
@@ -131,6 +141,17 @@ const Header = () => {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                to="/booking"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 ${
+                  isActiveLink("/booking")
+                    ? "bg-orange-600 text-white border border-orange-700"
+                    : "bg-orange-600 text-white hover:bg-orange-700"
+                }`}
+              >
+                Booking
+              </Link>
             </nav>
           </div>
         )}
