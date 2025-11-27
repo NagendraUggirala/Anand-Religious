@@ -1,25 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { IconTarget, IconSparkles, IconBolt } from "@tabler/icons-react";
 
 const ServicesPage = () => {
-  const havanBenefits = [
-    {
-      title: "Relief in specific life areas",
-      icon: "🎯",
-      description: "Targeted solutions for career, relationships, health, and more"
-    },
-    {
-      title: "Spiritual purification",
-      icon: "✨",
-      description: "Cleanse negative energies and restore spiritual balance"
-    },
-    {
-      title: "Energetic balance",
-      icon: "⚖",
-      description: "Harmonize planetary influences and life energies"
-    }
-  ];
+const havanBenefits = [
+  {
+    title: "Relief in specific life areas",
+    icon: (
+      <div className="flex justify-center mb-2">
+        <IconTarget className="w-10 h-10 text-blue-600" />
+      </div>
+    ),
+    description: "Targeted solutions for career, relationships, health, and more"
+  },
+  {
+    title: "Spiritual purification",
+    icon: (
+      <div className="flex justify-center mb-2">
+        <IconSparkles className="w-10 h-10 text-purple-600" />
+      </div>
+    ),
+    description: "Cleanse negative energies and restore spiritual balance"
+  },
+  {
+    title: "Energetic balance",
+    icon: (
+      <div className="flex justify-center mb-2">
+        <IconBolt className="w-10 h-10 text-green-600" />
+      </div>
+    ),
+    description: "Harmonize planetary influences and life energies"
+  }
+];
+
 
   const homamTypes = [
     {
@@ -27,7 +41,7 @@ const ServicesPage = () => {
       description: "For emotional healing, mental peace, and spiritual growth",
       recommended: "Recommended for stress, anxiety, emotional blockages, and seeking inner peace",
       image:"https://tirikala.com/upload/product/KetuHomamV4.webp",
-      icon: "🕉",
+      
       duration: "2-3 hours",
       benefits: ["Emotional healing", "Mental clarity", "Spiritual growth"]
     },
@@ -35,7 +49,7 @@ const ServicesPage = () => {
       category: "Prosperity & Wealth Homams",
       description: "For financial stability, career growth, and abundance",
       recommended: "Recommended for financial difficulties, career obstacles, and seeking prosperity",
-      icon: "💰",
+    
       image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf990l3MT2yF8oXaeuXU44HbTBcs8EvZaQkA&s",
       duration: "3-4 hours",
       benefits: ["Financial stability", "Career growth", "Abundance flow"]
@@ -44,17 +58,17 @@ const ServicesPage = () => {
       category: "Protection & Peace Homams",
       description: "For protection from negative energies and maintaining harmony",
       recommended: "Recommended for protection, family harmony, and removing obstacles",
-      icon: "🛡",
+  
       image: "https://panditsnearme.com/_next/image?url=%2Fassets%2Fhoma%2FNavchandi-Homam.webp&w=3840&q=75",
       duration: "2-3 hours",
       benefits: ["Negative energy removal", "Family harmony", "Obstacle clearance"]
     }
   ];
 
-  const participationOptions = [
+ const participationOptions = [
     {
       type: "With Physical Presence",
-      emoji: "🙏",
+    
       description: "Join us at our sacred location to experience the ritual in person",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAtxKgfpMf-Eo4kaQIflqFzEEzSruHcnYVnQ&s",
       features: [
@@ -66,7 +80,7 @@ const ServicesPage = () => {
     },
     {
       type: "Without Physical Presence (Remote)",
-      emoji: "🌐",
+    
       description: "Participate from anywhere in the world through our live link",
       image: "https://i.guim.co.uk/img/static/sys-images/Admin/BkFill/Default_image_group/2011/4/13/1302706219837/Monk-on-Laptop-007.jpg?width=465&dpr=1&s=none&crop=none",
       features: [
@@ -80,19 +94,19 @@ const ServicesPage = () => {
 
   const ritualProcess = [
     {
-      step: "1",
+      
       title: "Birth Chart Analysis",
       description: "Our Vedic priests analyze your Janam Kundali using authentic principles",
-      image: "https://media.istockphoto.com/id/1280278639/vector/zodiac-astrology-circle-astrological-constellation-wheel-zodiac-horoscope-signs-mystical.jpg?s=612x612&w=0&k=20&c=4BbgxKKrRd1OL3SoBE0IMqoVURGJFGiwwUzVAivsJnc="
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd9AuyjglTD1JVL_ski0ZabVplQnjA0BtKAg&s"
     },
     {
-      step: "2",
+      
       title: "Ritual Recommendation",
       description: "Specific Havan or Pooja recommended based on planetary positions",
       image: "https://www.shutterstock.com/image-photo/varanasi-uttar-pradesh-india-2024_11_14-260nw-2549440035.jpg"
     },
     {
-      step: "3",
+      
       title: "Sacred Performance",
       description: "Ritual performed in your Name and Gotram by experienced priests",
       image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUnYieWxw2SNu9maTJwIqZDuV_ggD2Ix8tEA&s"
@@ -102,7 +116,7 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-16 md:py-20 bg-gradient-to-br from-orange-900 via-orange-800 to-orange-700 overflow-hidden">
+      <section className="relative py-16 md:py-20 bg-gradient-to-br from-yellow-800 via-yellow-800 to-yellow-900 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
           <div className="absolute bottom-0 right-0 w-80 h-80 bg-yellow-400/20 rounded-full mix-blend-overlay filter blur-3xl opacity-25"></div>
@@ -159,9 +173,7 @@ const ServicesPage = () => {
                       alt={step.title}
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
-                    <div className="absolute top-4 left-4 bg-orange-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
-                      {step.step}
-                    </div>
+                  
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-orange-800 mb-3">
@@ -294,9 +306,7 @@ const ServicesPage = () => {
                       alt={homam.category}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full w-10 h-10 flex items-center justify-center text-xl">
-                      {homam.icon}
-                    </div>
+                   
                     <div className="absolute bottom-4 left-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       {homam.duration}
                     </div>
@@ -425,7 +435,7 @@ const ServicesPage = () => {
                   name: "Priya Sharma",
                   service: "Spiritual Healing Homam",
                   testimonial: "The homam brought immense peace and clarity to my life. I felt the positive energy immediately.",
-                  image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80",
+                  image: "https://media.istockphoto.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=0&k=20&c=EqR2Lffp4tkIYzpqYh8aYIPRr-gmZliRHRxcQC5yylY=",
                   rating: 5
                 },
                 {
@@ -478,7 +488,7 @@ const ServicesPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-16 bg-gradient-to-r from-orange-800 to-orange-900 text-white">
+      <section className="py-12 md:py-16 bg-gradient-to-r  from-slate-50 to-blue-50">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -489,7 +499,7 @@ const ServicesPage = () => {
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               Ready to Begin Your Spiritual Journey?
             </h2>
-            <p className="text-lg text-orange-100 mb-6 max-w-2xl mx-auto">
+            <p className="text-lg mb-6 max-w-2xl mx-auto">
               Book a consultation to understand which ritual is right for you based on your birth chart
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -501,13 +511,13 @@ const ServicesPage = () => {
               </Link>
               <Link
                 to="/industries"
-                className="border-2 border-white text-white hover:bg-white hover:text-orange-800 px-8 py-3 rounded-lg font-semibold transition-all duration-300"
+                className="border-2  hover:text-orange-800 px-8 py-3 rounded-lg font-semibold transition-all duration-300"
               >
                 View Complete Service Catalog
               </Link>
               <Link
                 to="/how-it-works"
-                className="border-2 border-white text-white hover:bg-white hover:text-orange-800 px-8 py-3 rounded-lg font-semibold transition-all duration-300"
+                className="border-2  hover:text-orange-800 px-8 py-3 rounded-lg font-semibold transition-all duration-300"
               >
                 Learn How It Works
               </Link>

@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-
+ 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-
+ 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 30);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+ 
   const navItems = [
     { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
     { path: "/services", label: "Our Rituals" },
     { path: "/industries", label: "Services" },
     { path: "/blog", label: "Blog" },
+    { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
   ];
-
+ 
   const isActiveLink = (path) => location.pathname === path;
-
+ 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 
-      bg-white border-b 
+      className={`sticky top-0 z-40 transition-all duration-300
+      bg-white border-b
       ${isScrolled ? "shadow-md border-gray-200" : "border-gray-100"}`}
     >
       <div className="container mx-auto px-4">
@@ -49,16 +49,16 @@ const Header = () => {
                 className="w-8 h-10 md:w-10 md:h-12 object-contain"
               />
             </div>
-
+ 
             {/* Text After Images */}
             <div className="flex flex-col items-start">
               <h1 className="text-lg md:text-xl font-bold text-blue-800">
                 <span className="text-orange-500">ANAND </span>RELIGIOUS TRUST
               </h1>
-              <p className="text-xs text-gray-600 italic mt-1">धर्मो रक्षति रक्षितः</p>
+              <p className="text-xs text-gray-600 italic mt-1">Protect Dharma, and Dharma protects you</p>
             </div>
           </Link>
-
+ 
           {/* Desktop Navigation - Right Side */}
           <nav className="hidden lg:flex items-center space-x-3 order-2">
             {navItems.map((item) => (
@@ -85,7 +85,7 @@ const Header = () => {
               Booking
             </Link>
           </nav>
-
+ 
           {/* Mobile menu button - Right Side */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -122,7 +122,7 @@ const Header = () => {
             )}
           </button>
         </div>
-
+ 
         {/* Mobile Menu - Improved Alignment */}
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 pb-4">
@@ -159,5 +159,7 @@ const Header = () => {
     </header>
   );
 };
-
+ 
 export default Header;
+ 
+ 

@@ -7,7 +7,7 @@ const IndustriesPage = () => {
   const [selectedHomam, setSelectedHomam] = useState(null);
 
   // Main Vedic Services
-  const vedicServices = {
+ const vedicServices = {
     havan: {
       id: 'havan',
       name: 'हवन',
@@ -30,7 +30,7 @@ const IndustriesPage = () => {
       duration: '1-3 hours',
       requirements: ['Full birth details', 'Gotram (if known)', 'Specific intentions'],
       image: '/images/havan-service.jpg',
-      icon: '🔥'
+      icon: '🪔' // Diya lamp symbol
     },
     homam: {
       id: 'homam',
@@ -54,7 +54,7 @@ const IndustriesPage = () => {
       duration: '2-4 hours',
       requirements: ['Complete birth details', 'Specific purpose', 'Date and time preferences'],
       image: '/images/homam-service.jpg',
-      icon: '🕉'
+      icon: '✨' // Sparkles symbol
     },
     consultation: {
       id: 'consultation',
@@ -78,10 +78,9 @@ const IndustriesPage = () => {
       duration: '60-90 minutes',
       requirements: ['Accurate birth details', 'Specific questions', 'Openness to guidance'],
       image: '/images/consultation-service.jpg',
-      icon: '📜'
+      icon: '🔮' // Crystal ball symbol
     }
   };
-
   // Special Homams with Detailed Information
   const specialHomams = [
     {
@@ -329,8 +328,8 @@ const IndustriesPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-orange-900 via-orange-800 to-orange-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/40"></div>
+      <section className="relative py-20 bg-gradient-to-br from-yellow-800 via-yellow-800 to-yellow-900 text-white overflow-hidden">
+        <div className="absolute inset-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -552,104 +551,109 @@ const IndustriesPage = () => {
       </section>
 
       {/* Consultation Services */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-800 mb-4">
-              Vedic Consultation Services
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Personalized guidance from experienced Vedic scholars and astrologers
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {consultationServices.map((service, index) => (
-              <motion.div
-                key={service.type}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-lg p-6 border border-yellow-200"
-              >
-                <h3 className="text-xl font-bold text-orange-800 mb-3">
-                  {service.type}
-                </h3>
-                <div className="flex items-center text-gray-600 mb-4">
-                  <span className="mr-2">⏱</span>
-                  <span>{service.duration}</span>
-                </div>
-                <p className="text-gray-700 mb-4">{service.focus}</p>
-                <ul className="space-y-2">
-                  {service.includes.map((item, idx) => (
-                    <li key={idx} className="flex items-start text-sm text-gray-600">
-                      <span className="text-yellow-600 mr-2 mt-1">•</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/booking"
-                  className="block w-full bg-yellow-500 text-orange-800 text-center py-3 rounded-lg font-semibold hover:bg-orange-600 hover:text-white transition-all duration-300 mt-6"
-                >
-                  Book Consultation
-                </Link>
-              </motion.div>
-            ))}
+   <section className="py-16 bg-white">
+  <div className="container mx-auto px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="text-center mb-12"
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-orange-800 mb-4">
+        Vedic Consultation Services
+      </h2>
+      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        Personalized guidance from experienced Vedic scholars and astrologers
+      </p>
+    </motion.div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {consultationServices.map((service, index) => (
+        <motion.div
+          key={service.type}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: index * 0.2 }}
+          className="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-lg p-6 border border-yellow-200 flex flex-col h-full"
+        >
+          <div className="flex-grow">
+            <h3 className="text-xl font-bold text-orange-800 mb-3">
+              {service.type}
+            </h3>
+            <div className="flex items-center text-gray-600 mb-4">
+              <span className="mr-2">⏱</span>
+              <span>{service.duration}</span>
+            </div>
+            <p className="text-gray-700 mb-4">{service.focus}</p>
+            <ul className="space-y-2">
+              {service.includes.map((item, idx) => (
+                <li key={idx} className="flex items-start text-sm text-gray-600">
+                  <span className="text-yellow-600 mr-2 mt-1">•</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
+          <Link
+            to="/booking"
+            className="block w-full bg-yellow-500 text-orange-800 text-center py-3 rounded-lg font-semibold hover:bg-orange-600 hover:text-white transition-all duration-300 mt-6"
+          >
+            Book Consultation
+          </Link>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Booking Process */}
-      <section className="py-16 bg-orange-50">
-        <div className="container mx-auto px-4">
+     <section className="py-16 bg-orange-50">
+  <div className="container mx-auto px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="text-center mb-12"
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-orange-800 mb-4">
+        Simple Booking Process
+      </h2>
+      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        Easy steps to book your Vedic service and receive divine blessings
+      </p>
+    </motion.div>
+    <div className="max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        {bookingProcess.map((step, index) => (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            key={step.step}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className="flex flex-col"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-800 mb-4">
-              Simple Booking Process
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Easy steps to book your Vedic service and receive divine blessings
-            </p>
-          </motion.div>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              {bookingProcess.map((step, index) => (
-                <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="bg-white rounded-2xl shadow-lg p-4 mb-2">
-                    <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-orange-800 font-bold text-lg mx-auto mb-3">
-                      {step.step}
-                    </div>
-                    <h3 className="font-semibold text-orange-800 mb-2">{step.title}</h3>
-                    <p className="text-sm text-gray-600 mb-2">{step.description}</p>
-                    <div className="text-xs text-gray-500">({step.duration})</div>
-                  </div>
-                  {index < bookingProcess.length - 1 && (
-                    <div className="hidden md:block h-1 bg-yellow-300 mx-auto w-full mt-6"></div>
-                  )}
-                </motion.div>
-              ))}
+            <div className="bg-white rounded-2xl shadow-lg p-4 h-56 w-full flex flex-col justify-start items-center text-center">
+              <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-orange-800 font-bold text-lg mb-3">
+                {step.step}
+              </div>
+              <h3 className="font-semibold text-orange-800 mb-2 text-sm leading-tight">
+                {step.title}
+              </h3>
+              <p className="text-xs text-gray-600 mb-2 flex-grow leading-relaxed">
+                {step.description}
+              </p>
+              <div className="text-xs text-gray-500 mt-auto">
+                ({step.duration})
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-orange-800 to-orange-900 text-white">
+      <section className="py-16 bg-gradient-to-r from-slate-50 to-blue-50">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -659,19 +663,19 @@ const IndustriesPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Ready to Begin Your Spiritual Journey?
             </h2>
-            <p className="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
               Experience the transformative power of authentic Vedic rituals and guidance
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/booking"
-                className="bg-yellow-500 text-orange-800 px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-orange-800 transition-all duration-300 text-lg"
+                className="bg-yellow-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-orange-800 transition-all duration-300 text-lg"
               >
                 Book a Service
               </Link>
               <Link
                 to="/booking"
-                className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-orange-800 transition-all duration-300 text-lg"
+                className="border-2 px-8 py-4 rounded-xl font-semibold hover:text-orange-800 transition-all duration-300 text-lg"
               >
                 Get Free Consultation
               </Link>

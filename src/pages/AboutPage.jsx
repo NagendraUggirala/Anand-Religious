@@ -2,6 +2,9 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FileText, Star, Globe, Heart } from "lucide-react";
+import { BookOpen, Zap, Crown, Globe2 } from "lucide-react";
+import { IconOm } from "@tabler/icons-react";
+import { IconPray } from "@tabler/icons-react";
 
 const About = () => {
   const ref1 = useRef(null);
@@ -97,65 +100,91 @@ const About = () => {
   };
 
   const spiritualServices = [
-    
-  {
-    icon: <FileText className="w-6 h-6 text-indigo-500" />,
-    title: "Birth Chart Analysis",
-    description: "Detailed study of your Janam Kundali (birth chart) to identify key spiritual needs and rituals"
-  },
-  {
-    icon: <Star className="w-6 h-6 text-yellow-500" />,
-    title: "Vedic Rituals",
-    description: "Authentic Vedic rituals performed by experienced priests for spiritual well-being"
-  },
-  {
-    icon: <Globe className="w-6 h-6 text-green-500" />,
-    title: "Global Participation",
-    description: "Participate in rituals from anywhere in the world through our digital platform"
-  },
-  {
-    icon: <Heart className="w-6 h-6 text-red-500" />,
-    title: "Divine Blessings",
-    description: "Receive blessings and spiritual guidance for you and your family's prosperity"
-  },
-];
+    {
+      icon: (
+        <div className="flex justify-center">
+          <FileText className="w-10 h-10 text-indigo-500" />
+        </div>
+      ),
+      title: "Birth Chart Analysis",
+      description:
+        "Detailed study of your Janam Kundali (birth chart) to identify key spiritual needs and rituals",
+    },
+    {
+      icon: (
+        <div className="flex justify-center">
+          <Star className="w-10 h-10 text-yellow-500" />
+        </div>
+      ),
+      title: "Vedic Rituals",
+      description:
+        "Authentic Vedic rituals performed by experienced priests for spiritual well-being",
+    },
+    {
+      icon: (
+        <div className="flex justify-center">
+          <Globe className="w-10 h-10 text-green-500" />
+        </div>
+      ),
+      title: "Global Participation",
+      description:
+        "Participate in rituals from anywhere in the world through our digital platform",
+    },
+    {
+      icon: (
+        <div className="flex justify-center">
+          <Heart className="w-10 h-10 text-red-500" />
+        </div>
+      ),
+      title: "Divine Blessings",
+      description:
+        "Receive blessings and spiritual guidance for you and your family's prosperity",
+    },
+  ];
 
-    
+
+
+
 
   const corePrinciples = [
     {
       title: "Vedic Wisdom",
-      description: "Preserving and propagating the timeless wisdom of Sanatan Dharma as revealed in the Vedas",
-      icon: "📖"
+      description:
+        "Preserving and propagating the timeless wisdom of Sanatan Dharma as revealed in the Vedas",
+      icon: <BookOpen className="w-12 h-12 text-indigo-600" />,
     },
     {
       title: "Spiritual Solutions",
-      description: "Providing authentic solutions to life's challenges through ancient Vedic practices",
-      icon: "⚡"
+      description:
+        "Providing authentic solutions to life's challenges through ancient Vedic practices",
+      icon: <Zap className="w-12 h-12 text-yellow-500" />,
     },
     {
       title: "Ancestral Traditions",
-      description: "Continuing the sacred rituals and traditions passed down through generations",
-      icon: "👑"
+      description:
+        "Continuing the sacred rituals and traditions passed down through generations",
+      icon: <Crown className="w-12 h-12 text-amber-600" />,
     },
     {
       title: "Universal Harmony",
-      description: "Promoting harmony between spiritual, embodied, and scientific aspects of human existence",
-      icon: "🌐"
-    }
+      description:
+        "Promoting harmony between spiritual, embodied, and scientific aspects of human existence",
+      icon: <Globe2 className="w-12 h-12 text-green-600" />,
+    },
   ];
+
 
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       {/* Enhanced Hero Section with Dharmo Rakshati Rakshitah */}
-      <section className="relative py-16 md:py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 overflow-hidden">
+      <section className="relative py-16 md:py-20 bg-gradient-to-br from-yellow-800 via-yellow-800 to-yellow-900 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -left-24 -top-20 w-72 h-72 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
           <div className="absolute -right-24 -bottom-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -175,15 +204,15 @@ const About = () => {
                 <div className="text-2xl sm:text-3xl md:text-5xl font-bold text-yellow-300 mb-4 md:mb-5 font-sans leading-tight">
                   धर्मो रक्षति रक्षितः
                 </div>
-                
+
                 {/* Transliteration */}
                 <div className="text-base sm:text-lg md:text-2xl text-blue-100 italic mb-4 md:mb-5">
                   "Dharmo Rakshati Rakshitah"
                 </div>
-                
+
                 {/* Separator */}
                 <div className="w-16 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 mx-auto rounded-full mb-4 md:mb-5"></div>
-                
+
                 {/* Meaning */}
                 <div className="text-sm sm:text-base md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed px-2">
                   Where righteousness protects the protector, and ethical practices build lasting legacies.
@@ -209,7 +238,7 @@ const About = () => {
               className="max-w-4xl mx-auto"
             >
               <p className="text-sm sm:text-base md:text-lg text-blue-100 leading-relaxed px-2 sm:px-4">
-                A sacred initiative dedicated to preserving the timeless wisdom of Sanatan Dharma. Our journey is guided by 
+                A sacred initiative dedicated to preserving the timeless wisdom of Sanatan Dharma. Our journey is guided by
                 the timeless wisdom that when you protect Dharma (righteousness), Dharma protects you in return.
               </p>
             </motion.div>
@@ -218,11 +247,11 @@ const About = () => {
       </section>
 
       {/* Founder Section - Enhanced for Mobile */}
-      <section className="py-12 md:py-15 bg-white">ab
+      <section className="py-12 md:py-15 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
-              
+
               {/* Left: Image card with responsive sizing */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
@@ -239,7 +268,7 @@ const About = () => {
                       alt="Founder & Chairman"
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
-                    
+
                     {/* Shine effect on hover */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
 
@@ -268,9 +297,9 @@ const About = () => {
                   >
                     <div className="bg-gradient-to-r from-blue-50/50 to-orange-50/50 rounded-xl p-4 md:p-6 border-l-4 border-orange-500 shadow-lg transition-all duration-300 group-hover:shadow-xl group-hover:border-orange-600 mx-2 sm:mx-0">
                       <p className="text-gray-700 italic text-sm sm:text-base md:text-lg leading-relaxed text-center">
-                        "We connect souls with the divine through authentic Vedic practices. Every ritual we perform is backed by 
-                        complete adherence to Vedic scriptures, spiritual purity, and a vision for universal spiritual growth. 
-                        Our service isn't just rituals; it's a bridge that connects devotees with the timeless wisdom of the Vedas 
+                        "We connect souls with the divine through authentic Vedic practices. Every ritual we perform is backed by
+                        complete adherence to Vedic scriptures, spiritual purity, and a vision for universal spiritual growth.
+                        Our service isn't just rituals; it's a bridge that connects devotees with the timeless wisdom of the Vedas
                         for healing, clarity, and inner transformation."
                       </p>
                     </div>
@@ -293,22 +322,22 @@ const About = () => {
                   <div className="mt-4 md:mt-6 text-gray-700 space-y-4 w-full">
                     <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                       A spiritual visionary with an unwavering commitment to preserving Vedic wisdom, Anand founded
-                      Anand Religious Trust (MAA SENA) with a simple yet powerful vision: to reconnect humanity 
+                      Anand Religious Trust (MAA SENA) with a simple yet powerful vision: to reconnect humanity
                       with the timeless wisdom of Sanatan Dharma and help individuals find answers through authentic Vedic practices.
                     </p>
                     <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                       With deep reverence for Vedic scriptures and an innate understanding of spiritual needs,
-                      Anand has dedicated the trust to serving devotees worldwide, ensuring that authentic Vedic 
+                      Anand has dedicated the trust to serving devotees worldwide, ensuring that authentic Vedic
                       rituals and guidance are accessible to all who seek spiritual growth, healing, and inner peace.
                     </p>
-                    
+
                     {/* Added Trust Information */}
                     <div className="bg-blue-50 rounded-lg p-4 md:p-6 mt-4 border-l-4 border-blue-500">
                       <h4 className="font-bold text-blue-800 text-base sm:text-lg md:text-xl mb-2">About Anand Religious Trust (MAA SENA)</h4>
                       <p className="text-gray-700 text-xs sm:text-sm md:text-base">
-                        Under Anand's guidance, Anand Religious Trust has emerged as a trusted spiritual institution. 
-                        We specialize in performing authentic Vedic rituals based on Janam Kundali, ensuring purity, 
-                        authenticity, and maximum spiritual benefit in every ceremony. 
+                        Under Anand's guidance, Anand Religious Trust has emerged as a trusted spiritual institution.
+                        We specialize in performing authentic Vedic rituals based on Janam Kundali, ensuring purity,
+                        authenticity, and maximum spiritual benefit in every ceremony.
                       </p>
                     </div>
                   </div>
@@ -349,7 +378,7 @@ const About = () => {
                 About Anand Religious Trust (MAA SENA)
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-2 sm:px-4">
-              Preserving and spreading authentic Vedic wisdom worldwide with devotion, purity, and spiritual excellence.
+                Preserving and spreading authentic Vedic wisdom worldwide with devotion, purity, and spiritual excellence.
               </p>
             </motion.div>
 
@@ -440,7 +469,7 @@ const About = () => {
           </div>
         </div>
       </section> */}
-      
+
 
       {/* Timeline Section - Mobile Optimized */}
       {/* <section className="py-12 md:py-20 bg-gradient-to-br from-blue-50 to-gray-50">
@@ -522,7 +551,7 @@ const About = () => {
         </div>
       </section> */}
 
-      
+
       {/* Mission Section */}
       <section ref={ref1} className="py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
@@ -547,12 +576,12 @@ const About = () => {
                   </h3>
                   <div className="space-y-4 text-left">
                     <p className="text-gray-700 leading-relaxed">
-                      Anand Religious Trust - MAA SENA is dedicated to preserving the timeless wisdom 
-                      of Sanatan Dharma and offering simple solutions to challenges that arise in modern life. 
+                      Anand Religious Trust - MAA SENA is dedicated to preserving the timeless wisdom
+                      of Sanatan Dharma and offering simple solutions to challenges that arise in modern life.
                       The answers already exist within the divine scriptures passed down by our ancestors.
                     </p>
                     <p className="text-gray-700 leading-relaxed">
-                      Our mission is to help individuals access this authentic Vedic foundation and 
+                      Our mission is to help individuals access this authentic Vedic foundation and
                       discover spiritual significance through divine vision and faith.
                     </p>
                   </div>
@@ -566,13 +595,13 @@ const About = () => {
                   </h3>
                   <div className="space-y-4 text-left">
                     <p className="text-gray-700 leading-relaxed">
-                      At MAA SENA, the spiritual practices needed for your well-being are determined 
-                      by studying your birth chart (Janam Kundali) according to Vedic principles. 
-                      These primary actions connect with your heart and determine how divine blessings 
+                      At MAA SENA, the spiritual practices needed for your well-being are determined
+                      by studying your birth chart (Janam Kundali) according to Vedic principles.
+                      These primary actions connect with your heart and determine how divine blessings
                       flow to you and your family.
                     </p>
                     <p className="text-gray-700 leading-relaxed">
-                      True wisdom derives from humility, prosperity, appreciation of our identity, 
+                      True wisdom derives from humility, prosperity, appreciation of our identity,
                       and devotion to the Divine.
                     </p>
                   </div>
@@ -685,27 +714,33 @@ const About = () => {
                 Access Divine Blessings Worldwide
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-orange-500 mx-auto mb-8 rounded-full"></div>
-              
+
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-white/20 mb-8">
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  Our rituals can be performed on your behalf regardless of your physical location. 
-                  We provide opportunities for spiritual participation from any part of the world, 
+                  Our rituals can be performed on your behalf regardless of your physical location.
+                  We provide opportunities for spiritual participation from any part of the world,
                   allowing you to receive divine blessings and achieve spiritual success.
                 </p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                   <div className="bg-white rounded-lg p-4 shadow-md">
-                    <div className="text-2xl mb-2">🌍</div>
+                    <div className="text-2xl mb-2"><Globe className="w-10 h-10 mx-auto text-blue-600 mb-2" /></div>
                     <h4 className="font-bold text-purple-800 mb-2">Global Reach</h4>
                     <p className="text-sm text-gray-600">Participate from anywhere in the world</p>
                   </div>
                   <div className="bg-white rounded-lg p-4 shadow-md">
-                    <div className="text-2xl mb-2">🕉️</div>
+                    <div className="text-2xl mb-2">
+
+                      <IconOm className="w-10 h-10 mx-auto text-orange-600 mb-2" />
+                    </div>
                     <h4 className="font-bold text-purple-800 mb-2">Authentic Rituals</h4>
                     <p className="text-sm text-gray-600">Performed by experienced Vedic priests</p>
                   </div>
                   <div className="bg-white rounded-lg p-4 shadow-md">
-                    <div className="text-2xl mb-2">🙏</div>
+                    <div className="text-2xl mb-2">
+
+                      <IconPray className="w-10 h-10 mx-auto text-green-600 mb-2" />
+                    </div>
                     <h4 className="font-bold text-purple-800 mb-2">Divine Connection</h4>
                     <p className="text-sm text-gray-600">Direct blessings for you and your family</p>
                   </div>
@@ -748,9 +783,9 @@ const About = () => {
               </h2>
               <div className="w-20 h-1 md:w-24 md:h-1 bg-gradient-to-r from-blue-500 to-orange-500 mx-auto mb-6 md:mb-8 rounded-full"></div>
               <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8 px-2 sm:px-4">
-                With expanding spiritual services across continents, diverse ritual offerings, authentic Vedic practices, 
-                and global access through live participation, Anand Religious Trust stands for preserving Sanatan Dharma, 
-                transparent spiritual guidance, and a vision to help individuals worldwide access the timeless wisdom 
+                With expanding spiritual services across continents, diverse ritual offerings, authentic Vedic practices,
+                and global access through live participation, Anand Religious Trust stands for preserving Sanatan Dharma,
+                transparent spiritual guidance, and a vision to help individuals worldwide access the timeless wisdom
                 of the Vedas for healing, clarity, and inner transformation.
               </p>
               <motion.div
@@ -772,7 +807,7 @@ const About = () => {
       </section>
 
       {/* CTA - Mobile Optimized */}
-      <section className="py-12 md:py-16 bg-gradient-to-r from-blue-800 to-blue-900 text-white">
+      <section className="py-12 md:py-16 bg-gradient-to-r from-slate-50 to-blue-50">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -783,7 +818,7 @@ const About = () => {
             <h2 className="text-2xl md:text-2xl font-bold mb-4 md:mb-6">
               Ready to Begin Your Spiritual Journey?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-blue-200 mb-6 md:mb-8 max-w-2xl mx-auto px-2 sm:px-4">
+            <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto px-2 sm:px-4">
               Discover how Anand Religious Trust's commitment to authentic Vedic practices can transform your spiritual life and help you find clarity, healing, and inner peace.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
@@ -798,7 +833,7 @@ const About = () => {
               </Link>
               <Link
                 to="/contact"
-                className="border-2 border-white text-white hover:bg-white hover:text-blue-800 px-4 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm sm:text-base"
+                className="border-2  hover:text-blue-800 px-4 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm sm:text-base"
               >
                 Get In Touch
               </Link>
@@ -819,8 +854,8 @@ function EnhancedStatCard({ title, subtitle, delay = 0 }) {
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      whileHover={{ 
-        y: -4, 
+      whileHover={{
+        y: -4,
         scale: 1.05,
         transition: { duration: 0.3 }
       }}
@@ -833,7 +868,7 @@ function EnhancedStatCard({ title, subtitle, delay = 0 }) {
         <div className="text-xs text-gray-400 mt-1 group-hover:text-gray-600 transition-colors duration-300">
           {subtitle}
         </div>
-        
+
         {/* Hover effect background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-orange-50/50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
       </div>

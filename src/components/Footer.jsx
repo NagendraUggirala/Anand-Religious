@@ -7,10 +7,10 @@ const Footer = () => {
 
   const quickLinks = [
     { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
     { path: "/services", label: "Our Rituals" },
     { path: "/industries", label: "Services" },
     { path: "/blog", label: "Blog" },
+    { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" }
   ];
 
@@ -142,7 +142,10 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-gradient-to-b from-gray-900 to-[#081526] text-white">
+      <footer className="bg-gradient-to-b from-blue-800 to-[#030469] text-white">
+      {/* <footer className="bg-gradient-to-b from-blue-900 to-[#0d2b4d] text-white"> */}
+
+
         <div className="container mx-auto px-6">
           
           {/* Main Footer Content */}
@@ -175,16 +178,13 @@ const Footer = () => {
                       <span className="text-orange-400">ANAND</span> 
                       <span className="text-white"> RELIGIOUS TRUST</span>
                     </h2>
-                    <p className="text-orange-200 text-xs md:text-sm italic">"धर्मो रक्षति रक्षितः"</p>
+                    <p className="text-orange-200 text-xs md:text-sm italic">"Protect Dharma, and Dharma protects you"</p>
                   </div>
                 </div>
 
                 <div className="text-left">
                   <p className="text-gray-300 mb-3 text-sm leading-relaxed">
-                    A sacred initiative dedicated to preserving the timeless wisdom of Sanatan Dharma and serving humanity through authentic Vedic practices.
-                  </p>
-                  <p className="text-gray-300 mb-3 text-sm leading-relaxed">
-                    We specialize in performing authentic Vedic rituals based on Janam Kundali, ensuring purity, authenticity, and maximum spiritual benefit for devotees worldwide.
+                    We are a sacred initiative dedicated to preserving Sanatan Dharma and serving humanity through true Vedic practices. With devotion, we perform pure and traditional Vedic rituals based on your Janam Kundali, offering genuine spiritual growth, well-being, and benefit to devotees worldwide.
                   </p>
                 </div>
               </div>
@@ -213,9 +213,9 @@ const Footer = () => {
                     <div className="flex items-start space-x-2">
                       <i className="fas fa-map-marker-alt text-orange-400 mt-1 text-sm" />
                       <span className="text-gray-300 text-left">
-                        Hiko, 131/A, 2nd Floor<br />
-                        Banjara Hills, Hyderabad<br />
-                        Telangana - 500034
+                        H.No. 131/A, 2nd Floor,<br />
+                        MLA Colony, Beside Vamsiram Banjara<br />
+                        Abodes, Road No.12, Lane 14,Banjara Hills, Hyderabad-500034.
                       </span>
                     </div>
 
@@ -226,7 +226,7 @@ const Footer = () => {
 
                     <div className="flex items-center space-x-2">
                       <i className="fas fa-envelope text-orange-400 text-sm" />
-                      <span className="text-gray-300">info@anandreligioustrust.com</span>
+                      <span className="text-gray-300">info.anandrealtyy@gmail.com</span>
                     </div>
                   </div>
                 </div>
