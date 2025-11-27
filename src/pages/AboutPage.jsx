@@ -368,9 +368,7 @@ const About = () => {
       <section ref={ref1} className="py-8 md:py-10 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView1 ? "visible" : "hidden"}
+
             className="max-w-6xl mx-auto"
           >
             <motion.div variants={itemVariants} className="text-center mb-12 md:mb-16">
