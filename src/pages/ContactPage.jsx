@@ -66,7 +66,7 @@ const ContactAdvancedWithMapBottom = () => {
       ),
       title: "Email Us",
       description: "Get detailed spiritual guidance",
-      details: ["info.anandrealtyy@gmail.com"],
+      details: ["info.anandreligioustrust@gmail.com"],
       action: "Send Email",
       link: "mailto:info@anandreligioustrust.org",
       color: "from-purple-500 to-purple-600",

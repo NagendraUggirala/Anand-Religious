@@ -226,7 +226,7 @@ const Footer = () => {
 
                     <div className="flex items-center space-x-2">
                       <i className="fas fa-envelope text-orange-400 text-sm" />
-                      <span className="text-gray-300">info.anandrealtyy@gmail.com</span>
+                      <span className="text-gray-300">info.anandreligioustrust@gmail.com</span>
                     </div>
                   </div>
                 </div>
