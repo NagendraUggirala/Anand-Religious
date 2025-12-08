@@ -1,7 +1,9 @@
 // ContactAdvancedWithMapBottom.jsx
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const initialForm = {
   name: "",
@@ -15,19 +17,44 @@ const initialForm = {
   website: "", // honeypot
 };
 
+// ✅ Yup validation
+const validationSchema = Yup.object({
+  name: Yup.string().trim().required("Name is required"),
+  email: Yup.string()
+    .trim()
+    .email("Enter a valid email")
+    .required("Email is required"),
+  phone: Yup.string()
+    .trim()
+    .matches(/^\+?[0-9 ]{7,15}$/, "Enter a valid phone number")
+    .required("Phone is required"),
+  serviceType: Yup.string().required("Please select service type"),
+  donationType: Yup.string().required("Please select donation interest"),
+  timing: Yup.string().required("Please select preferred timing"),
+  subject: Yup.string()
+    .trim()
+    .required("Subject is required")
+    .min(5, "Subject must be at least 5 characters"),
+  message: Yup.string()
+    .trim()
+    .min(10, "Please provide detailed spiritual requirements (min 10 chars)")
+    .required("Message is required"),
+  // honeypot should stay empty
+  website: Yup.string().test(
+    "is-empty",
+    "Spam detected",
+    (val) => !val || val.trim() === ""
+  ),
+});
+
 const ContactAdvancedWithMapBottom = () => {
-  const [formData, setFormData] = useState(() => {
-    try {
-      const saved = localStorage.getItem("anand_trust_contact_draft");
-      return saved ? JSON.parse(saved) : initialForm;
-    } catch {
-      return initialForm;
-    }
-  });
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [apiError, setApiError] = useState(null);
+
+   useEffect(() => {
+    localStorage.removeItem("anand_trust_contact_draft");
+  }, []);
 
   // refs for sections
   const sectionRef = useRef(null);
@@ -40,22 +67,35 @@ const ContactAdvancedWithMapBottom = () => {
     margin: "0px 0px -120px 0px",
   });
 
-  useEffect(() => {
-    const t = setTimeout(() => {
-      localStorage.setItem(
-        "anand_trust_contact_draft",
-        JSON.stringify(formData)
-      );
-    }, 600);
-    return () => clearTimeout(t);
-  }, [formData]);
+  // load draft from localStorage ONCE
+  const [initialValues] = useState(() => {
+    try {
+      const saved = localStorage.getItem("anand_trust_contact_draft");
+      return saved ? { ...initialForm, ...JSON.parse(saved) } : initialForm;
+    } catch {
+      return initialForm;
+    }
+  });
 
+  // auto-clear success alert
   useEffect(() => {
     if (submitStatus === "success") {
       const t = setTimeout(() => setSubmitStatus(null), 5000);
       return () => clearTimeout(t);
     }
   }, [submitStatus]);
+
+  // autosave form data to localStorage
+  const handleFormChange = (values) => {
+    const t = setTimeout(() => {
+      try {
+        localStorage.setItem("anand_trust_contact_draft", JSON.stringify(values));
+      } catch {
+        /* ignore */
+      }
+    }, 600);
+    return () => clearTimeout(t);
+  };
 
   const contactMethods = [
     {
@@ -68,7 +108,7 @@ const ContactAdvancedWithMapBottom = () => {
       description: "Get detailed spiritual guidance",
       details: ["info.anandreligioustrust@gmail.com"],
       action: "Send Email",
-      link: "mailto:info@anandreligioustrust.org",
+      link: "mailto:info.anandreligioustrust@gmail.com",
       color: "from-purple-500 to-purple-600",
       bgColor: "bg-purple-50",
       borderColor: "border-purple-200",
@@ -138,59 +178,6 @@ const ContactAdvancedWithMapBottom = () => {
     "Just Inquiring",
   ];
 
-  // validation
-  const validate = (data) => {
-    const e = {};
-    if (!data.name?.trim()) e.name = "Name is required";
-    if (!data.email?.trim()) e.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
-      e.email = "Enter a valid email";
-    if (!data.phone?.trim()) e.phone = "Phone is required";
-    else if (!/^\+?[0-9 ]{7,15}$/.test(data.phone))
-      e.phone = "Enter a valid phone number";
-    if (!data.serviceType) e.serviceType = "Please select service type";
-    if (!data.donationType) e.donationType = "Please select donation interest";
-    if (!data.timing) e.timing = "Please select preferred timing";
-    if (!data.subject?.trim()) e.subject = "Subject is required";
-    if (!data.message?.trim() || data.message.trim().length < 10)
-      e.message =
-        "Please provide detailed spiritual requirements (min 10 chars)";
-    if (data.website && data.website.trim().length > 0)
-      e.website = "Spam detected";
-    return e;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((s) => ({ ...s, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: undefined }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const eObj = validate(formData);
-    if (Object.keys(eObj).length > 0) {
-      setErrors(eObj);
-      const firstKey = Object.keys(eObj)[0];
-      const el = document.querySelector(`[name="${firstKey}"]`);
-      if (el) el.focus();
-      return;
-    }
-    setIsSubmitting(true);
-    try {
-      await new Promise((res) => setTimeout(res, 1200)); // simulate API
-      setIsSubmitting(false);
-      setSubmitStatus("success");
-      localStorage.removeItem("anand_trust_contact_draft");
-      setFormData(initialForm);
-      setShowModal(true);
-      setTimeout(() => setShowModal(false), 2500);
-    } catch {
-      setIsSubmitting(false);
-      setSubmitStatus("error");
-    }
-  };
-
   const fadeUp = {
     hidden: { opacity: 0, y: 18 },
     visible: { opacity: 1, y: 0 },
@@ -232,7 +219,6 @@ const ContactAdvancedWithMapBottom = () => {
               className="inline-block bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl mb-6"
             >
               <div className="flex items-center justify-center mb-3">
-                {/* <span className="text-3xl mr-3">🕉️</span> */}
                 <h1 className="text-2xl md:text-4xl font-bold">
                   Connect with{" "}
                   <span className="text-yellow-300">Divine Guidance</span>
@@ -296,7 +282,6 @@ const ContactAdvancedWithMapBottom = () => {
                 <div className="bg-white rounded-xl shadow-md p-6 border border-slate-200 w-full flex flex-col">
                   <div className="flex-1">
                     <div className="flex items-center mb-4">
-                      {/* <span className="text-2xl mr-2">🙏</span> */}
                       <h2 className="text-xl font-bold text-slate-800">
                         Divine Connection
                       </h2>
@@ -327,7 +312,7 @@ const ContactAdvancedWithMapBottom = () => {
                               {method.details.map((detail, idx) => (
                                 <p
                                   key={idx}
-                                  className="text-slate-700 font-medium text-sm"
+                                  className="text-slate-700 font-medium text-sm break-all"
                                 >
                                   {detail}
                                 </p>
@@ -414,7 +399,7 @@ const ContactAdvancedWithMapBottom = () => {
                           </svg>
                         </a>
                         <a
-                          href="mailto:info@anandreligioustrust.org"
+                          href="mailto:info.anandreligioustrust@gmail.com"
                           className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-2 rounded-lg transition-all duration-300 hover:shadow-md hover:scale-105"
                           aria-label="Send us spiritual queries"
                         >
@@ -432,18 +417,15 @@ const ContactAdvancedWithMapBottom = () => {
                 </div>
               </motion.div>
 
-              {/* SPIRITUAL FORM CARD */}
+              {/* SPIRITUAL FORM CARD with Formik/Yup/Axios */}
               <motion.div variants={fadeUp} className="lg:col-span-2 flex">
                 <div className="bg-white rounded-xl shadow-md p-6 md:p-8 border border-slate-200 w-full flex flex-col">
                   <div className="flex-1">
                     <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
                       <div className="mb-4 md:mb-0">
-                        <div className="flex items-center mb-2">
-                          {/* <span className="text-2xl mr-2">📿</span> */}
-                          <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
-                            Spiritual Request Form
-                          </h2>
-                        </div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                          Spiritual Request Form
+                        </h2>
                         <p className="text-slate-600 text-sm md:text-base max-w-2xl">
                           Share your spiritual needs and requirements. Our
                           experienced priests and spiritual guides will contact
@@ -489,219 +471,280 @@ const ContactAdvancedWithMapBottom = () => {
                     )}
 
                     {submitStatus === "error" && (
-                      <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 mb-6 text-rose-700 text-sm">
+                      <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 mb-3 text-rose-700 text-sm">
                         Divine energy is temporarily unavailable. Please try
                         again later or contact us directly.
                       </div>
                     )}
 
-                    <form
-                      onSubmit={handleSubmit}
-                      className="space-y-6"
-                      noValidate
+                    {apiError && (
+                      <div className="bg-rose-50 border border-rose-200 rounded-lg p-3 mb-3 text-rose-700 text-xs">
+                        {apiError}
+                      </div>
+                    )}
+
+                    <Formik
+                      initialValues={initialValues}
+                      validationSchema={validationSchema}
+                      onSubmit={async (values, { setSubmitting, resetForm }) => {
+                        setApiError(null);
+                        setSubmitStatus(null);
+
+                        // Save form data before submission
+                        handleFormChange(values);
+
+                        const payload = {
+                          name: values.name,
+                          email: values.email,
+                          phone: values.phone,
+                          serviceType: values.serviceType,
+                          donationType: values.donationType,
+                          timing: values.timing,
+                          subject: values.subject,
+                          message: values.message,
+                          timestamp: new Date().toISOString(),
+                        };
+
+                        console.log("📩 Spiritual request payload:", payload);
+
+                        try {
+                          // Using dummy URL for now - later replace with your backend URL
+                          const res = await axios.post(
+                            "https://jsonplaceholder.typicode.com/posts", // Dummy URL
+                            payload,
+                            {
+                              headers: {
+                                "Content-Type": "application/json",
+                              },
+                            }
+                          );
+
+                          console.log("✅ Dummy API response:", res.data);
+
+                          setSubmitStatus("success");
+                          resetForm();
+                          localStorage.removeItem("anand_trust_contact_draft");
+                          setShowModal(true);
+                          setTimeout(() => setShowModal(false), 2500);
+                        } catch (err) {
+                          console.error("❌ Error submitting spiritual request:", err);
+                          setApiError(
+                            "Unable to submit your request right now. Please try again later."
+                          );
+                          setSubmitStatus("error");
+                        } finally {
+                          setSubmitting(false);
+                        }
+                      }}
                     >
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <FormField
-                          id="name"
-                          label="Full Name *"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          placeholder="Enter your full name"
-                          error={errors.name}
-                          required
-                        />
-                        <FormField
-                          id="email"
-                          label="Email Address *"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="Enter your email"
-                          error={errors.email}
-                          required
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <FormField
-                          id="phone"
-                          label="Phone Number *"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          placeholder="+91 98765 43210"
-                          error={errors.phone}
-                          required
-                        />
-                        <div>
-                          <label className="block text-sm font-semibold text-slate-700 mb-2">
-                            Spiritual Service Needed *
-                          </label>
-                          <select
-                            name="serviceType"
-                            value={formData.serviceType}
-                            onChange={handleChange}
-                            className={`w-full px-3 md:px-4 py-2 md:py-3 bg-slate-50 border ${
-                              errors.serviceType
-                                ? "border-rose-400"
-                                : "border-slate-300"
-                            } rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 text-sm md:text-base`}
-                            aria-invalid={!!errors.serviceType}
-                          >
-                            <option value="">Select spiritual service</option>
-                            {serviceTypes.map((t, idx) => (
-                              <option key={idx} value={t}>
-                                {t}
-                              </option>
-                            ))}
-                          </select>
-                          {errors.serviceType && (
-                            <p className="text-rose-600 text-sm mt-2">
-                              {errors.serviceType}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <div>
-                          <label className="block text-sm font-semibold text-slate-700 mb-2">
-                            Donation Interest *
-                          </label>
-                          <select
-                            name="donationType"
-                            value={formData.donationType}
-                            onChange={handleChange}
-                            className={`w-full px-3 md:px-4 py-2 md:py-3 bg-slate-50 border ${
-                              errors.donationType
-                                ? "border-rose-400"
-                                : "border-slate-300"
-                            } rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 text-sm md:text-base`}
-                            aria-invalid={!!errors.donationType}
-                          >
-                            <option value="">Select donation type</option>
-                            {donationTypes.map((b, idx) => (
-                              <option key={idx} value={b}>
-                                {b}
-                              </option>
-                            ))}
-                          </select>
-                          {errors.donationType && (
-                            <p className="text-rose-600 text-sm mt-2">
-                              {errors.donationType}
-                            </p>
-                          )}
-                        </div>
-
-                        <div>
-                          <label className="block text-sm font-semibold text-slate-700 mb-2">
-                            Preferred Timing *
-                          </label>
-                          <select
-                            name="timing"
-                            value={formData.timing}
-                            onChange={handleChange}
-                            className={`w-full px-3 md:px-4 py-2 md:py-3 bg-slate-50 border ${
-                              errors.timing
-                                ? "border-rose-400"
-                                : "border-slate-300"
-                            } rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 text-sm md:text-base`}
-                            aria-invalid={!!errors.timing}
-                          >
-                            <option value="">Select preferred timing</option>
-                            {timings.map((t, idx) => (
-                              <option key={idx} value={t}>
-                                {t}
-                              </option>
-                            ))}
-                          </select>
-                          {errors.timing && (
-                            <p className="text-rose-600 text-sm mt-2">
-                              {errors.timing}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-
-                      <div>
-                        <FormField
-                          id="subject"
-                          label="Subject *"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleChange}
-                          placeholder="Enter subject of your spiritual request"
-                          error={errors.subject}
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-slate-700 mb-2">
-                          Spiritual Requirements *
-                        </label>
-                        <textarea
-                          name="message"
-                          rows="4"
-                          value={formData.message}
-                          onChange={handleChange}
-                          placeholder="Please share details about the specific rituals, homams, or spiritual guidance you need. Include any important dates, family details, or special requirements..."
-                          className={`w-full px-3 md:px-4 py-2 md:py-3 bg-slate-50 border ${
-                            errors.message
-                              ? "border-rose-400"
-                              : "border-slate-300"
-                          } rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 resize-none text-sm md:text-base`}
-                          aria-invalid={!!errors.message}
-                        />
-                        <div className="flex justify-between items-center mt-2">
-                          {errors.message ? (
-                            <p className="text-rose-600 text-sm">
-                              {errors.message}
-                            </p>
-                          ) : (
-                            <p className="text-slate-500 text-xs md:text-sm">
-                              Detailed information helps us provide better
-                              spiritual guidance
-                            </p>
-                          )}
-                          <p className="text-slate-400 text-xs md:text-sm">
-                            {formData.message.length}/1000
-                          </p>
-                        </div>
-                      </div>
-
-                      <div style={{ display: "none" }} aria-hidden>
-                        <label>Leave this blank</label>
-                        <input
-                          name="website"
-                          value={formData.website}
-                          onChange={handleChange}
-                        />
-                        {errors.website && <p>{errors.website}</p>}
-                      </div>
-
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className={`w-full py-3 md:py-4 rounded-lg font-bold text-white transition-all duration-300 text-sm md:text-base ${
-                          isSubmitting
-                            ? "bg-slate-400 cursor-not-allowed"
-                            : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg hover:shadow-xl"
-                        }`}
-                        aria-busy={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <div className="flex items-center justify-center">
-                            <div className="w-4 h-4 md:w-5 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2 md:mr-3"></div>
-                            Sending Your Spiritual Request...
+                      {({ values, errors, touched, handleChange, isSubmitting }) => (
+                        <Form className="space-y-6" noValidate>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <FormField
+                              id="name"
+                              label="Full Name *"
+                              name="name"
+                              value={values.name}
+                              onChange={handleChange}
+                              placeholder="Enter your full name"
+                              error={touched.name && errors.name}
+                              required
+                            />
+                            <FormField
+                              id="email"
+                              label="Email Address *"
+                              name="email"
+                              type="email"
+                              value={values.email}
+                              onChange={handleChange}
+                              placeholder="Enter your email"
+                              error={touched.email && errors.email}
+                              required
+                            />
                           </div>
-                        ) : (
-                          "Send Spiritual Request"
-                        )}
-                      </button>
-                    </form>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <FormField
+                              id="phone"
+                              label="Phone Number *"
+                              name="phone"
+                              value={values.phone}
+                              onChange={handleChange}
+                              placeholder="+91 98765 43210"
+                              error={touched.phone && errors.phone}
+                              required
+                            />
+                            <div>
+                              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                Spiritual Service Needed *
+                              </label>
+                              <Field
+                                as="select"
+                                name="serviceType"
+                                className={`w-full px-3 md:px-4 py-2 md:py-3 bg-slate-50 border ${
+                                  touched.serviceType && errors.serviceType
+                                    ? "border-rose-400"
+                                    : "border-slate-300"
+                                } rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 text-sm md:text-base`}
+                                aria-invalid={!!(touched.serviceType && errors.serviceType)}
+                              >
+                                <option value="">Select spiritual service</option>
+                                {serviceTypes.map((t, idx) => (
+                                  <option key={idx} value={t}>
+                                    {t}
+                                  </option>
+                                ))}
+                              </Field>
+                              <ErrorMessage
+                                name="serviceType"
+                                component="p"
+                                className="text-rose-600 text-sm mt-2"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <div>
+                              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                Donation Interest *
+                              </label>
+                              <Field
+                                as="select"
+                                name="donationType"
+                                className={`w-full px-3 md:px-4 py-2 md:py-3 bg-slate-50 border ${
+                                  touched.donationType && errors.donationType
+                                    ? "border-rose-400"
+                                    : "border-slate-300"
+                                } rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 text-sm md:text-base`}
+                                aria-invalid={!!(touched.donationType && errors.donationType)}
+                              >
+                                <option value="">Select donation type</option>
+                                {donationTypes.map((b, idx) => (
+                                  <option key={idx} value={b}>
+                                    {b}
+                                  </option>
+                                ))}
+                              </Field>
+                              <ErrorMessage
+                                name="donationType"
+                                component="p"
+                                className="text-rose-600 text-sm mt-2"
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                Preferred Timing *
+                              </label>
+                              <Field
+                                as="select"
+                                name="timing"
+                                className={`w-full px-3 md:px-4 py-2 md:py-3 bg-slate-50 border ${
+                                  touched.timing && errors.timing
+                                    ? "border-rose-400"
+                                    : "border-slate-300"
+                                } rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 text-sm md:text-base`}
+                                aria-invalid={!!(touched.timing && errors.timing)}
+                              >
+                                <option value="">Select preferred timing</option>
+                                {timings.map((t, idx) => (
+                                  <option key={idx} value={t}>
+                                    {t}
+                                  </option>
+                                ))}
+                              </Field>
+                              <ErrorMessage
+                                name="timing"
+                                component="p"
+                                className="text-rose-600 text-sm mt-2"
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <FormField
+                              id="subject"
+                              label="Subject *"
+                              name="subject"
+                              type="text"
+                              value={values.subject}
+                              onChange={handleChange}
+                              placeholder="Enter subject of your spiritual request"
+                              error={touched.subject && errors.subject}
+                              required
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-sm font-semibold text-slate-700 mb-2">
+                              Spiritual Requirements *
+                            </label>
+                            <Field
+                              as="textarea"
+                              name="message"
+                              rows="4"
+                              className={`w-full px-3 md:px-4 py-2 md:py-3 bg-slate-50 border ${
+                                touched.message && errors.message
+                                  ? "border-rose-400"
+                                  : "border-slate-300"
+                              } rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 resize-none text-sm md:text-base`}
+                              placeholder="Please share details about the specific rituals, homams, or spiritual guidance you need. Include any important dates, family details, or special requirements..."
+                            />
+                            <div className="flex justify-between items-center mt-2">
+                              {touched.message && errors.message ? (
+                                <p className="text-rose-600 text-sm">
+                                  {errors.message}
+                                </p>
+                              ) : (
+                                <p className="text-slate-500 text-xs md:text-sm">
+                                  Detailed information helps us provide better
+                                  spiritual guidance
+                                </p>
+                              )}
+                              <p className="text-slate-400 text-xs md:text-sm">
+                                {values.message.length}/1000
+                              </p>
+                            </div>
+                            <ErrorMessage
+                              name="message"
+                              component="p"
+                              className="text-rose-600 text-sm mt-1"
+                            />
+                          </div>
+
+                          {/* Honeypot field (hidden) */}
+                          <div style={{ display: "none" }} aria-hidden>
+                            <label>Leave this blank</label>
+                            <Field name="website" />
+                            <ErrorMessage
+                              name="website"
+                              component="p"
+                              className="text-rose-600 text-sm"
+                            />
+                          </div>
+
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`w-full py-3 md:py-4 rounded-lg font-bold text-white transition-all duration-300 text-sm md:text-base ${
+                              isSubmitting
+                                ? "bg-slate-400 cursor-not-allowed"
+                                : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg hover:shadow-xl"
+                            }`}
+                            aria-busy={isSubmitting}
+                          >
+                            {isSubmitting ? (
+                              <div className="flex items-center justify-center">
+                                <div className="w-4 h-4 md:w-5 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2 md:mr-3" />
+                                Sending Your Spiritual Request...
+                              </div>
+                            ) : (
+                              "Send Spiritual Request"
+                            )}
+                          </button>
+                        </Form>
+                      )}
+                    </Formik>
                   </div>
                 </div>
               </motion.div>
@@ -754,8 +797,26 @@ const ContactAdvancedWithMapBottom = () => {
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center text-slate-500">
                     <div className="text-center">
-                      <div className="text-4xl mb-2">🛕</div>
-                      <p>Loading temple location...</p>
+                      <svg
+                        className="w-8 h-8 animate-spin text-orange-500 mx-auto mb-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        />
+                      </svg>
+                      Loading temple location...
                     </div>
                   </div>
                 )}
@@ -807,24 +868,14 @@ const ContactAdvancedWithMapBottom = () => {
       )}
 
       {/* Custom CSS for Spiritual Animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes pulse-slow {
-          0%,
-          100% {
-            opacity: 0.3;
-          }
-          50% {
-            opacity: 0.6;
-          }
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
         }
         @keyframes pulse-medium {
-          0%,
-          100% {
-            opacity: 0.25;
-          }
-          50% {
-            opacity: 0.5;
-          }
+          0%, 100% { opacity: 0.25; }
+          50% { opacity: 0.5; }
         }
         .animate-pulse-slow {
           animation: pulse-slow 4s ease-in-out infinite;
@@ -840,6 +891,7 @@ const ContactAdvancedWithMapBottom = () => {
 export default ContactAdvancedWithMapBottom;
 
 /* ---------------- FORM FIELD COMPONENT ---------------- */
+
 function FormField({
   id,
   label,
