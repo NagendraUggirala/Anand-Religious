@@ -9,7 +9,7 @@ const Footer = () => {
     { path: "/", label: "Home" },
     { path: "/services", label: "Our Rituals" },
     { path: "/industries", label: "Services" },
-    { path: "/blog", label: "Blog" },
+   
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" }
   ];

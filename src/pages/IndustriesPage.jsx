@@ -403,7 +403,6 @@ const IndustriesPage = () => {
               </motion.button>
             ))}
           </div>
-
           {/* Service Details */}
           <motion.div
             key={activeService}

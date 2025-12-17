@@ -281,7 +281,7 @@ const About = () => {
                       className="absolute left-4 md:left-6 bottom-4 md:bottom-6 transform group-hover:scale-110 transition-transform duration-300"
                     >
                       <div className="bg-white/95 backdrop-blur-sm px-3 md:px-4 py-1 md:py-2 rounded-full shadow-lg text-xs md:text-sm font-semibold text-gray-700 border border-gray-100 group-hover:border-orange-200 group-hover:shadow-xl transition-all duration-300">
-                        <div className="text-xs text-gray-500 group-hover:text-orange-500 transition-colors">Founder & Trustee</div>
+                        <div className="text-xs text-gray-500 group-hover:text-orange-500 transition-colors">Founder & Chairman</div>
                         <div className="uppercase text-xs tracking-wide group-hover:text-blue-600 transition-colors">ANAND RELIGIOUS TRUST</div>
                       </div>
                     </motion.div>
@@ -317,7 +317,7 @@ const About = () => {
               >
                 <div className="w-full">
                   <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-800 mb-2 text-center lg:text-left">Anand</h2>
-                  <p className="text-base sm:text-lg md:text-xl text-orange-500 font-semibold mt-1 text-center lg:text-left">Founder & Trustee</p>
+                  <p className="text-base sm:text-lg md:text-xl text-orange-500 font-semibold mt-1 text-center lg:text-left">Founder & Chairman</p>
 
                   <div className="mt-4 md:mt-6 text-gray-700 space-y-4 w-full">
                     <p className="text-sm sm:text-base md:text-lg leading-relaxed">

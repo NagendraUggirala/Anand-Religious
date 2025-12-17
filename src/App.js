@@ -8,7 +8,7 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import IndustriesPage from './pages/IndustriesPage';
-import BlogPage from './pages/BlogPage';
+
 import BookingPage from './pages/BookingPage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import VedicKnowledgePage from './pages/VedicKnowledgePage';
@@ -31,7 +31,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/industries" element={<IndustriesPage />} />
-              <Route path="/blog" element={<BlogPage />} />
+             
               <Route path="/booking" element={<BookingPage />} />
               <Route path="/how-it-works" element={<HowItWorksPage />} />
               <Route path="/vedic-knowledge" element={<VedicKnowledgePage />} />
