@@ -428,127 +428,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section - Mobile Optimized */}
-      {/* <section className="py-8 md:py-10 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-8 md:mb-10"
-          >
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-blue-800 mb-2">
-              Our Guiding Principles
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-2 sm:px-4">
-              The values that define our approach and differentiate us in the market
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto px-2 sm:px-0">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.08 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className="bg-white rounded-xl shadow-lg p-4 md:p-6 text-center group hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200"
-              >
-                <div className="text-3xl sm:text-4xl md:text-5xl mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {value.icon}
-                </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-800 mb-2 group-hover:text-blue-600 transition-colors">{value.title}</h3>
-                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed group-hover:text-gray-700 transition-colors">{value.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-
-      {/* Timeline Section - Mobile Optimized */}
-      {/* <section className="py-12 md:py-20 bg-gradient-to-br from-blue-50 to-gray-50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
-          >
-            <h2 className="text-2xl md:text-4xl font-bold text-blue-800 mb-4 md:mb-3">
-              Our Journey
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 px-2 sm:px-4">
-              Milestones that mark our journey in global trade and international partnerships
-            </p>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto px-2 sm:px-0">
-            <div className="md:hidden space-y-8">
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col items-center"
-                >
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg mb-4 shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300">
-                    {milestone.year}
-                  </div>
-                  
-                  <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg border border-blue-100 w-full text-center hover:shadow-xl hover:border-blue-200 transition-all duration-300 group">
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-800 mb-2 group-hover:text-blue-600 transition-colors">
-                      {milestone.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors">
-                      {milestone.description}
-                    </p>
-                  </div>
-                  
-                  {index < milestones.length - 1 && (
-                    <div className="w-1 h-6 sm:h-8 bg-blue-200 mt-4 rounded-full"></div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="hidden md:block relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-blue-200 h-full top-0"></div>
-
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  className={`flex flex-col md:flex-row items-center mb-8 md:mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                >
-                  <div className={`md:w-5/12 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                    <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-blue-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 group">
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-800 mb-2 group-hover:text-blue-600 transition-colors">{milestone.title}</h3>
-                      <p className="text-gray-600 text-sm md:text-base group-hover:text-gray-700 transition-colors">{milestone.description}</p>
-                    </div>
-                  </div>
-
-                  <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 md:w-16 md:h-16 bg-orange-500 rounded-full items-center justify-center text-white font-bold z-10 hover:scale-110 hover:bg-orange-600 transition-all duration-300 text-sm md:text-base">
-                    {milestone.year}
-                  </div>
-
-                  <div className="md:w-5/12"></div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section> */}
-
 
       {/* Mission Section */}
       <section ref={ref1} className="py-12 md:py-16 bg-white">
@@ -566,13 +445,16 @@ const About = () => {
               <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-orange-500 mx-auto mb-6 rounded-full"></div>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
-              <motion.div variants={itemVariants} className="flex">
-                <div className="bg-gradient-to-br from-purple-50 to-white p-6 sm:p-8 rounded-2xl shadow-lg border border-purple-100 hover:shadow-xl transition-all duration-300">
+            {/* IMPORTANT CHANGE HERE */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch">
+
+              {/* Card 1 */}
+              <motion.div variants={itemVariants} className="flex h-full">
+                <div className="bg-gradient-to-br from-purple-50 to-white p-6 sm:p-8 rounded-2xl shadow-lg border border-purple-100 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
                   <h3 className="text-xl sm:text-2xl font-bold text-purple-800 mb-4 text-left">
                     Preserving Ancient Wisdom
                   </h3>
-                  <div className="space-y-4 text-left">
+                  <div className="space-y-4 text-left flex-grow">
                     <p className="text-gray-700 leading-relaxed">
                       Anand Religious Trust - MAA SENA is dedicated to preserving the timeless wisdom
                       of Sanatan Dharma and offering simple solutions to challenges that arise in modern life.
@@ -586,12 +468,13 @@ const About = () => {
                 </div>
               </motion.div>
 
-              <motion.div variants={itemVariants} className="flex">
-                <div className="bg-gradient-to-br from-orange-50 to-white p-6 sm:p-8 rounded-2xl shadow-lg border border-orange-100 hover:shadow-xl transition-all duration-300">
+              {/* Card 2 */}
+              <motion.div variants={itemVariants} className="flex h-full">
+                <div className="bg-gradient-to-br from-orange-50 to-white p-6 sm:p-8 rounded-2xl shadow-lg border border-orange-100 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
                   <h3 className="text-xl sm:text-2xl font-bold text-purple-800 mb-4 text-left">
                     Spiritual Guidance Through Birth Charts
                   </h3>
-                  <div className="space-y-4 text-left">
+                  <div className="space-y-4 text-left flex-grow">
                     <p className="text-gray-700 leading-relaxed">
                       At MAA SENA, the spiritual practices needed for your well-being are determined
                       by studying your birth chart (Janam Kundali) according to Vedic principles.
@@ -605,55 +488,12 @@ const About = () => {
                   </div>
                 </div>
               </motion.div>
+
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Spiritual Services Section */}
-      <section className="py-12 md:py-16 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-800 mb-4">
-              Our Spiritual Services
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-orange-500 mx-auto mb-6 rounded-full"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Authentic Vedic practices for spiritual growth and well-being
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {spiritualServices.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white rounded-xl shadow-lg p-6 text-center group hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200"
-              >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold text-purple-800 mb-3 group-hover:text-purple-600 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors">
-                  {service.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Core Principles Section */}
       <section ref={ref2} className="py-12 md:py-16 bg-white">
@@ -668,8 +508,24 @@ const About = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-800 mb-4">
                 Our Core Principles
               </h2>
+
               <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-orange-500 mx-auto mb-6 rounded-full"></div>
+
+              {/* Animated Paragraph */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                className="text-gray-700 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed"
+              >
+                Our core purpose is to create awareness about the rituals practiced by our ancestors,
+                helping people understand the spiritual, emotional, and scientific significance behind
+                Vedic traditions. Through this knowledge, we aim to guide individuals toward a life of
+                harmony, purity, and Dharma.
+              </motion.p>
             </motion.div>
+
+
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {corePrinciples.map((principle, index) => (
@@ -698,72 +554,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Global Participation Section */}
-      <section className="py-12 md:py-16 bg-gradient-to-br from-purple-50 to-indigo-50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-800 mb-6">
-                Access Divine Blessings Worldwide
-              </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-orange-500 mx-auto mb-8 rounded-full"></div>
-
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-white/20 mb-8">
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  Our rituals can be performed on your behalf regardless of your physical location.
-                  We provide opportunities for spiritual participation from any part of the world,
-                  allowing you to receive divine blessings and achieve spiritual success.
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                  <div className="bg-white rounded-lg p-4 shadow-md">
-                    <div className="text-2xl mb-2"><Globe className="w-10 h-10 mx-auto text-blue-600 mb-2" /></div>
-                    <h4 className="font-bold text-purple-800 mb-2">Global Reach</h4>
-                    <p className="text-sm text-gray-600">Participate from anywhere in the world</p>
-                  </div>
-                  <div className="bg-white rounded-lg p-4 shadow-md">
-                    <div className="text-2xl mb-2">
-
-                      <IconOm className="w-10 h-10 mx-auto text-orange-600 mb-2" />
-                    </div>
-                    <h4 className="font-bold text-purple-800 mb-2">Authentic Rituals</h4>
-                    <p className="text-sm text-gray-600">Performed by experienced Vedic priests</p>
-                  </div>
-                  <div className="bg-white rounded-lg p-4 shadow-md">
-                    <div className="text-2xl mb-2">
-
-                      <IconPray className="w-10 h-10 mx-auto text-green-600 mb-2" />
-                    </div>
-                    <h4 className="font-bold text-purple-800 mb-2">Divine Connection</h4>
-                    <p className="text-sm text-gray-600">Direct blessings for you and your family</p>
-                  </div>
-                </div>
-
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-block"
-                >
-                  <Link
-                    to="/services"
-                    className="bg-gradient-to-r from-purple-600 to-orange-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center"
-                  >
-                    <span>Discover Our Free Trial</span>
-                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
 
       {/* Future Vision - Mobile Optimized */}

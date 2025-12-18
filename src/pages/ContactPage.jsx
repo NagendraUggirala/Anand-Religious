@@ -739,7 +739,7 @@ const ContactAdvancedWithMapBottom = () => {
                                 Sending Your Spiritual Request...
                               </div>
                             ) : (
-                              "Send Spiritual Request"
+                              "Send  Request"
                             )}
                           </button>
                         </Form>
@@ -768,7 +768,7 @@ const ContactAdvancedWithMapBottom = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-2xl font-bold text-slate-800"
               >
-                Visit Our Temple & Trust
+                Our Location
               </motion.h3>
               <motion.p
                 initial={{ opacity: 0, y: 12 }}

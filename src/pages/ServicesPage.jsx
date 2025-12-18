@@ -143,8 +143,28 @@ const ServicesPage = () => {
               <h2 className="text-2xl md:text-4xl font-bold text-orange-800 mb-4">
                 Havan & Pooja Based on Your Birth Chart
               </h2>
+
               <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-yellow-500 mx-auto mb-6 rounded-full"></div>
+
+              {/* Animated Paragraph */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+                className="text-gray-700 text-sm sm:text-base md:text-lg max-w-4xl mx-auto leading-relaxed"
+              >
+                At MAA SENA, the havan or pooja needed for your well-being is determined by studying your
+                birth chart (Janam Kundali) using true Vedic principles. Our priests perform each ritual in your
+                name and Gotram, ensuring that the spiritual intention and blessings flow directly to you and
+                your family.
+                <br /><br />
+                These rituals can be performed with or without your physical presence, and if you wish to
+                participate, we provide a live link, allowing devotees from any part of the world to join and
+                receive blessings in real time.
+              </motion.p>
             </motion.div>
+
 
             {/* Process Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -275,11 +295,27 @@ const ServicesPage = () => {
               <h2 className="text-2xl md:text-4xl font-bold text-orange-800 mb-4">
                 Special Homams
               </h2>
+
               <p className="text-lg text-gray-600 mb-2">
                 For deeper healing, prosperity, protection & peace
               </p>
+
               <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-yellow-500 mx-auto rounded-full"></div>
+
+              {/* Animated Paragraph */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeOut", delay: 0.25 }}
+                className="text-gray-700 text-sm sm:text-base md:text-lg max-w-3xl mx-auto mt-6 leading-relaxed"
+              >
+                We also conduct special homams for those seeking deeper spiritual healing, prosperity,
+                protection, or peace. Every homam is performed with complete discipline and devotion,
+                exactly as prescribed in our ancient texts.
+              </motion.p>
             </motion.div>
+
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {homamTypes.map((homam, index) => (

@@ -2,8 +2,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IconStars, IconFlame as TablerFlame, IconWorld, IconCertificate, IconShield, IconHeartHandshake, IconClock, IconUsers, IconAward, IconCheck } from "@tabler/icons-react";
-import { Flame, FileText, BookOpen, X, Calendar, Target, Globe, Shield, Zap, Sparkles } from "lucide-react";
+import {
+  IconStars,
+  IconFlame as TablerFlame,
+  IconWorld,
+  IconCertificate,
+  IconShield,
+  IconHeartHandshake,
+  IconClock,
+  IconUsers,
+  IconAward,
+  IconCheck,
+  IconTarget,
+  IconSparkles,
+  IconBolt
+} from "@tabler/icons-react";
+import { Flame, FileText, BookOpen, X, Calendar, Globe, Shield, Zap } from "lucide-react";
 
 const HomePage = () => {
   // State variables
@@ -12,6 +26,202 @@ const HomePage = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
   const [activeService, setActiveService] = useState('havan');
+  const [selectedHomam, setSelectedHomam] = useState(null);
+
+  const havanBenefits = [
+    {
+      title: "Relief in specific life areas",
+      icon: (
+        <div className="flex justify-center mb-2">
+          <IconTarget className="w-10 h-10 text-blue-600" />
+        </div>
+      ),
+      description: "Targeted solutions for career, relationships, health, and more"
+    },
+    {
+      title: "Spiritual purification",
+      icon: (
+        <div className="flex justify-center mb-2">
+          <IconSparkles className="w-10 h-10 text-purple-600" />
+        </div>
+      ),
+      description: "Cleanse negative energies and restore spiritual balance"
+    },
+    {
+      title: "Energetic balance",
+      icon: (
+        <div className="flex justify-center mb-2">
+          <IconBolt className="w-10 h-10 text-green-600" />
+        </div>
+      ),
+      description: "Harmonize planetary influences and life energies"
+    }
+  ];
+ 
+  const specialHomams = [
+    {
+      id: 'mahamrityunjaya',
+      name: 'महामृत्युंजय होम',
+      englishName: 'Mahamrityunjaya Homam',
+      purpose: 'Health, Longevity & Healing',
+      description: 'Powerful homam dedicated to Lord Shiva for overcoming health challenges, extending lifespan, and spiritual liberation',
+      benefits: [
+        'Healing from chronic diseases',
+        'Protection from accidents and untimely death',
+        'Mental peace and emotional stability',
+        'Spiritual growth and liberation',
+        'Removal of fear and anxiety'
+      ],
+      recommendedFor: [
+        'Serious health challenges',
+        'Surgery or medical procedures',
+        'Addiction recovery',
+        'Mental health issues',
+        'Spiritual seekers'
+      ],
+      duration: '3-4 hours',
+      specialRequirements: ['White flowers', 'Bilva leaves', 'Raw milk', 'Sandalwood'],
+      mantras: 'Mahamrityunjaya Mantra - 125,000 repetitions'
+    },
+    {
+      id: 'laxmi-kubera',
+      name: 'लक्ष्मी कुबेर होम',
+      englishName: 'Laxmi Kubera Homam',
+      purpose: 'Wealth & Prosperity',
+      description: 'Sacred fire ceremony for attracting wealth, abundance, and financial stability through divine blessings',
+      benefits: [
+        'Financial abundance and stability',
+        'Business growth and success',
+        'Removal of financial obstacles',
+        'Wise wealth management',
+        'Prosperity consciousness'
+      ],
+      recommendedFor: [
+        'Business owners and entrepreneurs',
+        'Financial difficulties',
+        'Career advancement',
+        'New ventures',
+        'Wealth preservation'
+      ],
+      duration: '2-3 hours',
+      specialRequirements: ['Gold items', 'Lotus flowers', 'Saffron', 'Coins'],
+      mantras: 'Laxmi Mantras and Kubera Mantras'
+    },
+    {
+      id: 'sudarshan',
+      name: 'सुदर्शन होम',
+      englishName: 'Sudarshan Homam',
+      purpose: 'Protection & Removal of Obstacles',
+      description: 'Powerful homam dedicated to Lord Vishnu for protection from negative energies and removal of obstacles',
+      benefits: [
+        'Protection from enemies and negative forces',
+        'Removal of black magic and evil eye',
+        'Clearing life path obstacles',
+        'Mental peace and security',
+        'Spiritual protection'
+      ],
+      recommendedFor: [
+        'Facing enemies or competition',
+        'Legal problems',
+        'Black magic concerns',
+        'Career obstacles',
+        'Relationship challenges'
+      ],
+      duration: '3-4 hours',
+      specialRequirements: ['Tulsi leaves', 'Chandan', 'Yellow flowers', 'Ghee'],
+      mantras: 'Sudarshan Mantra and Vishnu Sahasranama'
+    },
+    {
+      id: 'ganapathi',
+      name: 'गणपति होम',
+      englishName: 'Ganapathi Homam',
+      purpose: 'Success & New Beginnings',
+      description: 'Homam dedicated to Lord Ganesha for removing obstacles and ensuring success in new ventures',
+      benefits: [
+        'Removal of all types of obstacles',
+        'Success in new ventures',
+        'Wisdom and intelligence',
+        'Academic success',
+        'Smooth execution of plans'
+      ],
+      recommendedFor: [
+        'New business or project',
+        'Academic examinations',
+        'Job interviews',
+        'Marriage proposals',
+        'House warming'
+      ],
+      duration: '2-3 hours',
+      specialRequirements: ['Modak', 'Durva grass', 'Red flowers', 'Coconut'],
+      mantras: 'Ganapathi Atharvashirsha and Ganesha Mantras'
+    },
+    {
+      id: 'vastu',
+      name: 'वास्तु शांति होम',
+      englishName: 'Vastu Shanti Homam',
+      purpose: 'Home & Workplace Harmony',
+      description: 'Ceremony for harmonizing energies in homes and workplaces according to Vastu principles',
+      benefits: [
+        'Harmonization of space energies',
+        'Peace and prosperity in home',
+        'Removal of negative vibrations',
+        'Improved relationships',
+        'Business success'
+      ],
+      recommendedFor: [
+        'New home or office',
+        'Vastu defects correction',
+        'Peace in family',
+        'Business premises',
+        'Property disputes'
+      ],
+      duration: '3-4 hours',
+      specialRequirements: ['Vastu plan', 'Soil from property', 'Grains', 'Water from property'],
+      mantras: 'Vastu Purusha Mantras and Peace Chants'
+    },
+    {
+      id: 'navagraha',
+      name: 'नवग्रह होम',
+      englishName: 'Navagraha Homam',
+      purpose: 'Planetary Harmony',
+      description: 'Comprehensive homam for balancing all nine planetary influences and mitigating malefic effects',
+      benefits: [
+        'Balancing planetary influences',
+        'Reduction of karmic debts',
+        'Overall life improvement',
+        'Health and relationship benefits',
+        'Spiritual progress'
+      ],
+      recommendedFor: [
+        'Planetary doshas in birth chart',
+        'Saturn or Mars period',
+        'Multiple life challenges',
+        'Spiritual advancement',
+        'General well-being'
+      ],
+      duration: '4-5 hours',
+      specialRequirements: ['Nine grains', 'Nine gems', 'Nine fabrics', 'Nine flowers'],
+      mantras: 'Navagraha Mantras for all nine planets'
+    }
+  ];
+
+ const ritualProcess = [
+    {
+      title: "Birth Chart Analysis",
+      description: "Our Vedic priests analyze your Janam Kundali using authentic principles",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd9AuyjglTD1JVL_ski0ZabVplQnjA0BtKAg&s"
+    },
+    {
+      title: "Ritual Recommendation",
+      description: "Specific Havan or Pooja recommended based on planetary positions",
+      image: "https://www.shutterstock.com/image-photo/varanasi-uttar-pradesh-india-2024_11_14-260nw-2549440035.jpg"
+    },
+    {
+      title: "Sacred Performance",
+      description: "Ritual performed in your Name and Gotram by experienced priests",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUnYieWxw2SNu9maTJwIqZDuV_ggD2Ix8tEA&s"
+    }
+  ];
 
   // Vedic Services data
   const vedicServices = {
@@ -492,12 +702,12 @@ const HomePage = () => {
     {
       title: "Inner Peace & Clarity",
       description: "Experience profound mental calmness and clear thinking through spiritual practices",
-      icon: <Sparkles className="w-8 h-8 text-blue-600" />,
+      icon: <IconSparkles className="w-8 h-8 text-blue-600" />,
     },
     {
       title: "Karmic Healing",
       description: "Address past life karmic patterns and create positive future trajectories",
-      icon: <Target className="w-8 h-8 text-green-600" />,
+      icon: <IconTarget className="w-8 h-8 text-green-600" />,
     },
     {
       title: "Divine Protection",
@@ -529,7 +739,7 @@ const HomePage = () => {
     },
     {
       step: "04",
-      title: "Sacred Preparation",
+      title: "Sacred Preparation", 
       description: "Arrangement of pure materials and priest preparation",
     },
     {
@@ -548,8 +758,8 @@ const HomePage = () => {
   const filteredPosts = blogPosts.filter(post => {
     const matchesCategory = activeCategory === 'All' || post.category === activeCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 
@@ -572,7 +782,7 @@ const HomePage = () => {
 
   // Get related posts
   const getRelatedPosts = (currentPost) => {
-    return blogPosts.filter(post => 
+    return blogPosts.filter(post =>
       currentPost.relatedPosts.includes(post.id)
     );
   };
@@ -580,7 +790,8 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-amber-400 overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative py-16 sm:py-20 md:py-28 bg-amber-400 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -598,208 +809,351 @@ const HomePage = () => {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto text-center text-white"
           >
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-xl tracking-wide">
+            {/* Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-3 drop-shadow-xl tracking-wide">
               Anand Religious Trust
             </h1>
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-amber-300 drop-shadow-xl tracking-wide">
+
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4 text-amber-300 drop-shadow-xl tracking-wide">
               MAA SENA
             </h2>
 
-            <p className="text-xl md:text-2xl font-semibold mb-4 text-amber-100 max-w-3xl mx-auto">
+            {/* Guided by Dharma */}
+            <p className="text-base sm:text-lg md:text-2xl font-semibold mb-3 text-amber-100 max-w-3xl mx-auto">
               Guided by Dharma. Rooted in Vedas. Serving Humanity Through Spiritual Truth.
             </p>
 
-            <p className="text-lg md:text-xl text-amber-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              A sacred initiative dedicated to spreading Sanatan Dharma's timeless wisdom and guiding individuals worldwide through authentic Vedic practices for holistic well-being and spiritual evolution.
+            {/* Description */}
+            <p className="text-sm sm:text-base md:text-xl text-amber-100 mb-6 max-w-3xl mx-auto leading-relaxed">
+              A sacred initiative dedicated to spreading Sanatan Dharma's timeless wisdom and guiding
+              individuals worldwide through authentic Vedic practices for holistic well-being and
+              spiritual evolution.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
               <Link
                 to="/services"
-                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition transform hover:scale-105"
+                className="inline-flex justify-center bg-amber-600 hover:bg-amber-700 text-white
+               px-4 sm:px-8 py-2 sm:py-4
+               min-w-[160px] sm:min-w-[200px]
+               rounded-md sm:rounded-lg
+               font-semibold sm:font-bold
+               text-sm sm:text-lg
+               shadow-md sm:shadow-lg
+               transition transform hover:scale-105"
               >
                 Explore Rituals
               </Link>
 
               <Link
                 to="/contact"
-                className="border-2 border-white text-white hover:bg-white hover:text-amber-800 px-8 py-4 rounded-lg font-bold text-lg transition transform hover:scale-105"
+                className="inline-flex justify-center border-2 border-white text-white hover:bg-white hover:text-amber-800
+               px-4 sm:px-8 py-2 sm:py-4
+               min-w-[160px] sm:min-w-[220px]
+               rounded-md sm:rounded-lg
+               font-semibold sm:font-bold
+               text-sm sm:text-lg
+               transition transform hover:scale-105"
               >
                 Book a Havan / Pooja
               </Link>
             </div>
+
           </motion.div>
+        </div>
+      </section>  
+
+      {/* Who We Are */}
+      <section className="py-12 md:py-16 bg-white">
+  <div className="container mx-auto px-4 max-w-6xl">
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-center text-2xl md:text-3xl lg:text-4xl font-bold text-orange-800 mb-6"
+    >
+      Who We Are
+    </motion.h2>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="bg-orange-50 p-6 md:p-8 lg:p-12 rounded-xl shadow-xl border border-orange-200"
+    >
+      <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-6">
+        Anand Religious Trust – MAA SENA is a sacred initiative dedicated to preserving the timeless
+        wisdom of Sanatan Dharma and offering genuine solutions to life's challenges through the
+        ancient knowledge of the Vedas. We believe that every answer — whether spiritual, emotional,
+        financial, marital, or personal — already exists within the divine scriptures passed down by our
+        ancestors.
+      </p>
+
+      <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+        Our mission is to help individuals across the world reconnect with this authentic Vedic
+        knowledge and experience clarity, healing, and inner balance. Through sincere guidance, pure
+        rituals, and traditional Vedic practices, we ensure that every devotee receives support rooted in
+        truth, purity, and divine spiritual alignment.
+      </p>
+    </motion.div>
+  </div>
+</section>
+
+      {/* Havan & Pooja Based on Birth Chart Section */}
+      <section className="py-12 md:py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-2xl md:text-4xl font-bold text-orange-800 mb-4">
+                Havan & Pooja Based on Your Birth Chart
+              </h2>
+
+              <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-yellow-500 mx-auto mb-6 rounded-full"></div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+                className="text-gray-700 text-sm sm:text-base md:text-lg max-w-4xl mx-auto leading-relaxed"
+              >
+                At MAA SENA, the havan or pooja needed for your well-being is determined by studying your
+                birth chart (Janam Kundali) using true Vedic principles. Our priests perform each ritual in your
+                name and Gotram, ensuring that the spiritual intention and blessings flow directly to you and
+                your family.
+                <br /><br />
+                These rituals can be performed with or without your physical presence, and if you wish to
+                participate, we provide a live link, allowing devotees from any part of the world to join and
+                receive blessings in real time.
+              </motion.p>
+            </motion.div>
+
+            {/* Process Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {ritualProcess.map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden border border-orange-100 hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-orange-800 mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Who We Are */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center text-3xl md:text-4xl font-bold text-orange-800 mb-6"
-          >
-            Who We Are
-          </motion.h2>
-
+      {/* Special Homams Section */}
+      <section className="py-16 bg-orange-50">
+        <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-orange-50 p-8 md:p-12 rounded-xl shadow-xl border border-orange-200"
+            className="text-center mb-12"
           >
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-4">
-              Anand Religious Trust - MAA SENA is committed to preserving ancient Sanatan Dharma wisdom and providing simple spiritual solutions through authentic Vedic rituals and teachings. We bridge ancient wisdom with modern needs, making profound spiritual practices accessible to everyone.
-            </p>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-4">
-              Our purpose is to guide individuals toward clarity, healing, and balanced living through Vedic knowledge, divine rituals, and spiritual discipline. We believe in the transformative power of authentic Vedic practices to bring harmony to mind, body, and soul.
-            </p>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              We carry forward the legacy of Dharma with devotion, ensuring each person receives pure spiritual guidance and blessings. Our team consists of experienced Vedic priests, astrologers, and spiritual guides dedicated to serving humanity.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Blog Posts Section */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8 md:mb-12"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 md:mb-4">
-              {filteredPosts.length} {activeCategory === 'All' ? 'Wisdom Articles' : activeCategory + ' Articles'}
+            <h2 className="text-2xl md:text-4xl font-bold text-orange-800 mb-4">
+              Special Homams
             </h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
-              Carefully curated knowledge to guide your spiritual journey with authenticity and scientific backing. Dive deep into ancient wisdom made relevant for modern times.
+
+            <p className="text-lg text-gray-600 mb-2">
+              For deeper healing, prosperity, protection & peace
             </p>
+
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-yellow-500 mx-auto rounded-full"></div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: 0.25 }}
+              className="text-gray-700 text-sm sm:text-base md:text-lg max-w-3xl mx-auto mt-6 leading-relaxed"
+            >
+              We also conduct special homams for those seeking deeper spiritual healing, prosperity,
+              protection, or peace. Every homam is performed with complete discipline and devotion,
+              exactly as prescribed in our ancient texts.
+            </motion.p>
           </motion.div>
-
-          {/* Search and Filter Section */}
-        
-
-          {/* Posts Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
-            {filteredPosts.map((post, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {specialHomams.map((homam, index) => (
               <motion.div
-                key={post.id}
+                key={homam.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl md:shadow-xl md:hover:shadow-2xl transition-all duration-500 border border-orange-100 overflow-hidden group cursor-pointer"
-                onClick={() => handleCardClick(post)}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer"
+                onClick={() => setSelectedHomam(homam)}
               >
-                {/* Image Container */}
-                <div className="h-40 sm:h-44 md:h-48 relative overflow-hidden bg-gradient-to-br from-orange-100 to-yellow-50">
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      const fallbackDiv = e.target.nextSibling;
-                      fallbackDiv.style.display = 'flex';
-                    }}
-                  />
-                  <div 
-                    className="absolute inset-0 hidden items-center justify-center text-4xl sm:text-5xl md:text-6xl bg-gradient-to-br from-orange-100 to-yellow-50"
-                    style={{ display: 'none' }}
-                  >
-                    {fallbackEmojis[index]}
+                <div className="p-6">
+                  <div className="text-center mb-4">
+                    <h3 className="text-xl font-bold text-orange-800 mb-2">
+                      {homam.name}
+                    </h3>
+                    <p className="text-lg text-orange-600 font-semibold">{homam.englishName}</p>
                   </div>
                   
-                  {/* Badge */}
-                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-4 md:left-4">
-                    <span className="px-2 py-1 sm:px-3 sm:py-1 bg-white/90 backdrop-blur-sm text-orange-700 rounded-full text-xs sm:text-sm font-semibold">
-                      {post.category}
-                    </span>
-                  </div>
-                  
-                  {/* Read Time */}
-                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4">
-                    <span className="px-2 py-1 sm:px-3 sm:py-1 bg-black/50 backdrop-blur-sm text-white rounded-full text-xs sm:text-sm font-semibold">
-                      {post.readTime}
-                    </span>
-                  </div>
-                </div>
-                
-                {/* Content */}
-                <div className="p-4 sm:p-5 md:p-6">
-                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    {post.date}
-                  </div>
-
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 group-hover:text-orange-600 transition-colors line-clamp-2 text-gray-800 leading-tight">
-                    {post.title}
-                  </h3>
-                  
-                  <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3 leading-relaxed">
-                    {post.excerpt}
+                  <p className="text-gray-600 text-sm mb-4 text-center">
+                    {homam.purpose}
                   </p>
-
-                  {/* Author Info */}
-                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 pt-3 sm:pt-4 border-t border-gray-100">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-orange-600 font-bold text-xs sm:text-sm">
-                        {post.author.split(' ').map(n => n[0]).join('')}
-                      </span>
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-xs sm:text-sm font-semibold text-gray-800 truncate">{post.author}</div>
-                      <div className="text-xs text-gray-500 truncate">{post.authorRole}</div>
-                    </div>
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
-                    {post.tags.slice(0, 2).map(tag => (
-                      <span key={tag} className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-gray-100 text-gray-600 rounded text-xs">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* CTA Button */}
-                  <div className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 sm:py-3 px-4 rounded-lg sm:rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg shadow-orange-200 cursor-pointer text-sm sm:text-base">
-                    Explore Wisdom
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
+                  
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    {homam.description}
+                  </p>
+                  <div className="flex justify-between items-center text-sm text-gray-500">
+                    <span>⏱ {homam.duration}</span>
+                    <span className="text-yellow-600 font-semibold">Learn More →</span>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-
-          {/* No Results */}
-          {filteredPosts.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-12 md:py-16"
-            >
-              <div className="text-4xl sm:text-5xl md:text-6xl mb-3 md:mb-4">🔍</div>
-              <h3 className="text-xl sm:text-2xl md:text-2xl font-bold text-gray-800 mb-2">No articles found</h3>
-              <p className="text-sm sm:text-base text-gray-600 mb-4 md:mb-6 max-w-md mx-auto">Try adjusting your search or filter criteria</p>
-              <button
-                onClick={() => { setSearchTerm(''); setActiveCategory('All'); }}
-                className="px-4 py-2 sm:px-6 sm:py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-colors text-sm sm:text-base"
-              >
-                Clear Filters
-              </button>
-            </motion.div>
-          )}
         </div>
       </section>
+
+      {/* Homam Detail Modal */}
+      <AnimatePresence>
+        {selectedHomam && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={() => setSelectedHomam(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25 }}
+              className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="bg-gradient-to-r from-orange-600 to-yellow-500 p-6 text-white">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-bold mb-2">{selectedHomam.name}</h2>
+                    <h3 className="text-xl font-semibold mb-2">{selectedHomam.englishName}</h3>
+                    <p className="text-orange-100">{selectedHomam.purpose}</p>
+                  </div>
+                  <button
+                    onClick={() => setSelectedHomam(null)}
+                    className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm hover:scale-110"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-y-auto p-6">
+                {/* Description */}
+                <div className="mb-6">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-2">Description</h4>
+                  <p className="text-gray-700">{selectedHomam.description}</p>
+                </div>
+
+                {/* Benefits */}
+                <div className="mb-6">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-3">Key Benefits</h4>
+                  <ul className="space-y-2">
+                    {selectedHomam.benefits.map((benefit, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-green-600 mr-2 mt-1">✓</span>
+                        <span className="text-gray-700">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Recommended For */}
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-800 mb-3">Recommended For</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedHomam.recommendedFor.map((item, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Special Requirements */}
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-800 mb-3">Special Requirements</h4>
+                    <ul className="space-y-2">
+                      {selectedHomam.specialRequirements.map((req, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-yellow-600 mr-2 mt-1">•</span>
+                          <span className="text-gray-700">{req}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Additional Info */}
+                <div className="mt-6 space-y-4">
+                  <div className="p-4 bg-orange-50 rounded-lg">
+                    <h4 className="font-semibold text-orange-800 mb-2">Duration & Mantras</h4>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm text-gray-600">Duration</p>
+                        <p className="font-semibold text-gray-800">{selectedHomam.duration}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600">Mantras</p>
+                        <p className="font-semibold text-gray-800">{selectedHomam.mantras}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Book Button */}
+                <div className="mt-8">
+                  <Link
+                    to="/booking"
+                    className="block w-full bg-orange-600 hover:bg-orange-700 text-white text-center py-3 rounded-lg font-semibold transition-colors shadow-lg"
+                    onClick={() => setSelectedHomam(null)}
+                  >
+                    Book This Homam
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Spiritual Benefits Section */}
       <section className="py-16 bg-orange-50">
@@ -811,7 +1165,7 @@ const HomePage = () => {
           >
             Transformative Spiritual Benefits
           </motion.h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {spiritualBenefits.map((benefit, index) => (
               <motion.div
@@ -834,36 +1188,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* What We Offer */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-center text-3xl md:text-4xl font-bold text-orange-800 mb-6"
-          >
-            What We Offer
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {offerings.map((off, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: i * 0.2 }}
-                className="bg-white p-8 rounded-xl shadow-lg border border-orange-100 text-center hover:shadow-xl transition"
-              >
-                {off.icon}
-                <h3 className="text-2xl font-bold text-orange-800 mb-2">{off.title}</h3>
-                <p className="text-gray-700">{off.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Process Steps */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -874,7 +1198,7 @@ const HomePage = () => {
           >
             Our Spiritual Process
           </motion.h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {processSteps.map((step, index) => (
               <motion.div
@@ -885,12 +1209,12 @@ const HomePage = () => {
                 className="relative"
               >
                 <div className="bg-orange-50 p-6 rounded-xl border border-orange-200">
-                 
+                  
                   <h3 className="text-xl font-bold text-orange-800 mb-3 mt-4">{step.title}</h3>
                   <p className="text-gray-600">{step.description}</p>
                 </div>
                 {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 right-0 w-8 h-0.5  transform translate-x-4"></div>
+                  <div className="hidden lg:block absolute top-1/2 right-0 w-8 h-0.5 transform translate-x-4"></div>
                 )}
               </motion.div>
             ))}
@@ -908,25 +1232,24 @@ const HomePage = () => {
           >
             Our Vedic Services
           </motion.h2>
-          
+
           {/* Service Navigation Tabs */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             {Object.values(vedicServices).map((service) => (
               <button
                 key={service.id}
                 onClick={() => setActiveService(service.id)}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-                  activeService === service.id
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${activeService === service.id
                     ? 'bg-orange-600 text-white shadow-lg'
                     : 'bg-orange-100 text-orange-800 hover:bg-orange-200'
-                }`}
+                  }`}
               >
                 <span className="text-xl mr-2">{service.icon}</span>
                 {service.englishName}
               </button>
             ))}
           </div>
-          
+
           {/* Service Details */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -947,7 +1270,7 @@ const HomePage = () => {
                       <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                         {vedicServices[activeService].description}
                       </p>
-                      
+
                       <div className="space-y-6">
                         <div>
                           <h4 className="text-xl font-semibold text-orange-700 mb-3">Key Benefits</h4>
@@ -975,7 +1298,7 @@ const HomePage = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Right Column */}
                     <div className="space-y-6">
                       <div className="bg-white rounded-2xl p-6 shadow-md">
@@ -995,7 +1318,7 @@ const HomePage = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="bg-white rounded-2xl p-6 shadow-md">
                         <h4 className="text-xl font-semibold text-orange-800 mb-4">Requirements</h4>
                         <ul className="space-y-2">
@@ -1007,7 +1330,7 @@ const HomePage = () => {
                           ))}
                         </ul>
                       </div>
-                      
+
                       <Link
                         to="/booking"
                         className="block w-full bg-yellow-500 text-orange-800 text-center py-4 rounded-xl font-semibold hover:bg-orange-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -1023,28 +1346,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Why Choose */}
-    <section className="py-16 bg-white">
-  <div className="container mx-auto px-4 max-w-6xl">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      className="text-center mb-12"
-    >
-      <h2 className="text-3xl md:text-4xl font-bold text-orange-800 mb-4">
-        Why Choose MAA SENA?
-      </h2>
-      <p className="text-lg text-gray-600 max-w-4xl mx-auto">
-        At MAA SENA, we stand apart by offering <span className="text-orange-600 font-semibold">authentic Vedic practices</span> rooted in original scriptures, 
-        <span className="text-orange-600 font-semibold"> pure rituals without shortcuts</span>, and <span className="text-orange-600 font-semibold">personalized guidance based on your Janam Kundali</span>. 
-        We provide <span className="text-orange-600 font-semibold">global access via live links</span>, ensuring you can participate from anywhere while 
-        maintaining <span className="text-orange-600 font-semibold">astrologically auspicious timing</span>. Our <span className="text-orange-600 font-semibold">experienced Vedic priests</span> 
-        deliver <span className="text-orange-600 font-semibold">proven spiritual results</span> with <span className="text-orange-600 font-semibold">ongoing support</span> throughout your journey.
-      </p>
-    </motion.div>
-  </div>
-</section>
-
       {/* Global Reach */}
       <section className="py-16 bg-gradient-to-r from-orange-50 to-amber-50">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -1055,7 +1356,7 @@ const HomePage = () => {
           >
             Serving Worldwide
           </motion.h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -1068,7 +1369,7 @@ const HomePage = () => {
               <h3 className="text-2xl font-bold text-orange-800 mb-2">50+ Countries</h3>
               <p className="text-gray-600">Serving spiritual seekers worldwide</p>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1081,7 +1382,7 @@ const HomePage = () => {
               <h3 className="text-2xl font-bold text-orange-800 mb-2">5000+ Families</h3>
               <p className="text-gray-600">Transformed through our services</p>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1098,65 +1399,37 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Services Navigation */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-center text-3xl md:text-4xl font-bold text-orange-800 mb-10">
-            Explore Our Services
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Rituals */}
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-              <Link to="/services" className="block bg-white p-8 rounded-xl shadow-md border border-orange-100 hover:shadow-xl transition group">
-                <div className="flex justify-center mb-4">
-                  <Flame className="w-12 h-12 text-red-600 group-hover:scale-110 transition" />
-                </div>
-                <h3 className="text-center text-2xl font-bold text-orange-800 mb-3 group-hover:text-orange-600 transition">Our Rituals</h3>
-                <p className="text-center text-gray-700 mb-4">Explore Havan, Pooja, and Special Homams based on Vedic principles.</p>
-                <p className="text-center text-orange-600 font-semibold">Explore Rituals →</p>
-              </Link>
-            </motion.div>
-
-            {/* Services */}
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-              <Link to="/industries" className="block bg-white p-8 rounded-xl shadow-md border border-orange-100 hover:shadow-xl transition group">
-                <div className="flex justify-center mb-4">
-                  <FileText className="w-12 h-12 text-blue-600 group-hover:scale-110 transition" />
-                </div>
-                <h3 className="text-center text-2xl font-bold text-orange-800 mb-3 group-hover:text-orange-600 transition">Services</h3>
-                <p className="text-center text-gray-700 mb-4">Full catalog of Vedic rituals, homams, and spiritual services.</p>
-                <p className="text-center text-orange-600 font-semibold">View Services →</p>
-              </Link>
-            </motion.div>
-
-            {/* Blog */}
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
-              <Link to="/blog" className="block bg-white p-8 rounded-xl shadow-md border border-orange-100 hover:shadow-xl transition group">
-                <div className="flex justify-center mb-4">
-                  <BookOpen className="w-12 h-12 text-green-600 group-hover:scale-110 transition" />
-                </div>
-                <h3 className="text-center text-2xl font-bold text-orange-800 mb-3 group-hover:text-orange-600 transition">Blog</h3>
-                <p className="text-center text-gray-700 mb-4">Read articles on Vedic wisdom & spiritual guidance.</p>
-                <p className="text-center text-orange-600 font-semibold">Read Articles →</p>
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-center text-3xl md:text-4xl font-bold text-orange-800 mb-10">
-            What People Say
-          </h2>
+      <section className="py-16 bg-gray-50 overflow-hidden w-screen">
+        {/* Heading stays centered */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center text-3xl md:text-4xl font-bold text-orange-800 mb-12"
+        >
+          What People Say
+        </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: i * 0.15 }} className="bg-white p-6 rounded-xl shadow border border-orange-100">
+        {/* FULL SCREEN SCROLL */}
+        <div className="w-screen overflow-hidden">
+          <motion.div
+            className="flex gap-6 w-max px-6"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: 35,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          >
+            {[...testimonials, ...testimonials].map((t, i) => (
+              <div
+                key={i}
+                className="bg-white p-6 rounded-xl shadow border border-orange-100 w-[320px] flex-shrink-0"
+              >
                 <div className="flex items-start mb-4">
-                  <div className="w-12 h-12 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                  <div className="w-12 h-12 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center font-bold mr-4">
                     {t.initials}
                   </div>
                   <div>
@@ -1164,17 +1437,24 @@ const HomePage = () => {
                     <p className="text-sm text-gray-500">{t.location}</p>
                   </div>
                 </div>
-                <p className="italic text-gray-600">"{t.text}"</p>
-                <div className="flex mt-4">
+
+                <p className="italic text-gray-600 mb-4">"{t.text}"</p>
+
+                <div className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg
+                      key={star}
+                      className="w-5 h-5 text-yellow-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -1188,7 +1468,7 @@ const HomePage = () => {
           >
             Begin Your Spiritual Journey Today
           </motion.h2>
-          
+
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -1197,7 +1477,7 @@ const HomePage = () => {
           >
             Experience the transformative power of authentic Vedic practices. Connect with ancient wisdom for modern life challenges.
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1210,12 +1490,12 @@ const HomePage = () => {
             >
               Book Consultation
             </Link>
-            
+
             <Link
               to="/services"
-              className="border-2  text-dark hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition transform hover:scale-105"
+              className="border-2 border-dark text-dark hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition transform hover:scale-105"
             >
-              View All Services
+              View Our Rituals
             </Link>
           </motion.div>
         </div>
@@ -1241,8 +1521,8 @@ const HomePage = () => {
             >
               {/* Header with Image */}
               <div className="h-48 md:h-60 relative bg-gradient-to-br from-orange-900 to-orange-700 flex-shrink-0">
-                <img 
-                  src={selectedPost.image} 
+                <img
+                  src={selectedPost.image}
                   alt={selectedPost.title}
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -1256,7 +1536,7 @@ const HomePage = () => {
                 <div className="absolute inset-0 hidden items-center justify-center text-6xl bg-gradient-to-br from-orange-900 to-orange-700">
                   {fallbackEmojis[selectedPost.id - 1]}
                 </div>
-                
+
                 {/* Close Button */}
                 <button
                   onClick={handleCloseDetail}
@@ -1264,7 +1544,7 @@ const HomePage = () => {
                 >
                   <X className="w-5 h-5" />
                 </button>
-                
+
                 {/* Overlay Content */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white">
                   <div className="flex items-center gap-3 mb-3">
@@ -1297,11 +1577,11 @@ const HomePage = () => {
               <div className="flex-1 overflow-y-auto">
                 <div className="p-6 md:p-8">
                   {/* Article Content */}
-                  <div 
+                  <div
                     className="prose prose-lg max-w-none mb-8"
                     dangerouslySetInnerHTML={{ __html: selectedPost.content }}
                   />
-                  
+
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-8">
                     {selectedPost.tags.map(tag => (

@@ -8,7 +8,7 @@ const Footer = () => {
   const quickLinks = [
     { path: "/", label: "Home" },
     { path: "/services", label: "Our Rituals" },
-    { path: "/industries", label: "Services" },
+   
    
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" }
@@ -184,7 +184,8 @@ const Footer = () => {
 
                 <div className="text-left">
                   <p className="text-gray-300 mb-3 text-sm leading-relaxed">
-                    We are a sacred initiative dedicated to preserving Sanatan Dharma and serving humanity through true Vedic practices. With devotion, we perform pure and traditional Vedic rituals based on your Janam Kundali, offering genuine spiritual growth, well-being, and benefit to devotees worldwide.
+                  Anand Religious Trust (MAA SENA) preserves the timeless wisdom of Sanatan Dharma through authentic Vedic knowledge and rituals.
+Our mission is to guide individuals toward clarity, balance, and divine spiritual alignment through pure traditional practices.
                   </p>
                 </div>
               </div>
