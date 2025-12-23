@@ -168,7 +168,7 @@ const Footer = () => {
                       <img
                         src="/images/Anandhlogo.png"
                         alt="Anand Religious Trust"
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain  rounded-full border-2  border-orange-200 "
                       />
                     </div>
                   </div>

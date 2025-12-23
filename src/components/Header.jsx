@@ -15,8 +15,6 @@ const Header = () => {
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/services", label: "Our Rituals" },
-  
-   
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
   ];
@@ -25,20 +23,23 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 left-0 right-0 w-full z-50 bg-white border-b transition-all duration-300 ${
-        isScrolled ? "shadow-md border-gray-200" : "border-gray-100"
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white shadow-md border-b border-gray-200"
+          : "bg-white border-b border-gray-100"
       }`}
     >
-      {/* WRAPPER → FIXES MOBILE OVERFLOW  */}
-      <div className="w-full px-4 overflow-x-hidden">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
 
         {/* MAIN ROW */}
-        <div className="flex justify-between items-center py-3 md:py-4">
-          
-          {/* LOGO + FOUNDER SECTION */}
-          <Link to="/" className="flex items-center gap-2 md:gap-3 group">
-            <div className="flex items-center gap-2">
-              <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-orange-200 overflow-hidden shadow-sm group-hover:shadow-md duration-300">
+        <div className="flex justify-between items-center py-2 sm:py-3 md:py-4">
+
+          {/* LOGO + FOUNDER */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
+
+            {/* Images */}
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full border-2 border-orange-200 overflow-hidden shadow-sm group-hover:shadow-md transition">
                 <img
                   src="./images/image.png"
                   alt="Founder"
@@ -46,22 +47,30 @@ const Header = () => {
                 />
               </div>
 
-              <img
-                src="./images/Anandhlogo.png"
-                alt="Logo"
-                className="w-8 h-10 md:w-10 md:h-12 object-contain"
-              />
+              <div className="w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 flex items-center justify-center">
+                <img
+                  src="./images/Anandhlogo.png"
+                  alt="Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
 
-            <div className="flex flex-col items-start">
-              <h1 className="text-lg md:text-xl font-bold text-blue-800 leading-tight">
-                <span className="text-orange-500">ANAND </span>RELIGIOUS TRUST
+            {/* Text */}
+            <div className="flex flex-col leading-tight overflow-hidden">
+              <h1 className="text-xs sm:text-sm md:text-lg font-bold text-blue-800 whitespace-nowrap">
+                <span className="text-orange-500">ANAND </span>
+                RELIGIOUS TRUST
               </h1>
-              <p className="text-xs text-gray-600 italic">Protect Dharma, and Dharma protects you</p>
+
+              {/* Hide tagline only on very small screens */}
+              <p className="hidden sm:block text-[11px] md:text-sm text-gray-600 italic">
+                Protect Dharma, and Dharma protects you
+              </p>
             </div>
           </Link>
 
-          {/* DESKTOP NAVIGATION */}
+          {/* DESKTOP NAV */}
           <nav className="hidden lg:flex items-center space-x-3">
             {navItems.map((item) => (
               <Link
@@ -92,14 +101,14 @@ const Header = () => {
           {/* MOBILE MENU BUTTON */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 md:p-3 text-blue-800 hover:bg-blue-50 rounded-lg transition duration-200"
+            className="lg:hidden p-2 sm:p-2.5 text-blue-800 hover:bg-blue-50 rounded-lg transition"
           >
             {isMenuOpen ? (
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
@@ -108,7 +117,7 @@ const Header = () => {
 
         {/* MOBILE MENU */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 pb-4 overflow-x-hidden">
+          <div className="lg:hidden border-t border-gray-200 pb-4">
             <nav className="space-y-2 pt-3">
               {navItems.map((item) => (
                 <Link
@@ -139,7 +148,6 @@ const Header = () => {
             </nav>
           </div>
         )}
-
       </div>
     </header>
   );
